@@ -1,0 +1,661 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,深度学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这两天学了不少东西，但是原来wordpress的新文章功能一直打不开，无奈之下只好迁移到Github来了，这样似乎逼格稍微高了一点（然而并咩有什么卵用）。
+现在又回归到了最初的基础知识部分，我发现果然我的数学功底和基础知识还是非常薄弱的，因此又去看了一遍吴恩达大神的视频教程重新回顾了一下几个概念：损失函数、模型等等，这次才算是比较清晰地搞明白了到底机器学习这个学习是学了什么东西。我的理解，机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recurrent Neural Network (RNN) 学习笔记（二）">
+<meta property="og:url" content="http://yoursite.com/2015/09/08/Recurrent-Neural-Network-RNN-学习笔记（二）/index.html">
+<meta property="og:site_name" content="WangDiYi' Blog">
+<meta property="og:description" content="这两天学了不少东西，但是原来wordpress的新文章功能一直打不开，无奈之下只好迁移到Github来了，这样似乎逼格稍微高了一点（然而并咩有什么卵用）。
+现在又回归到了最初的基础知识部分，我发现果然我的数学功底和基础知识还是非常薄弱的，因此又去看了一遍吴恩达大神的视频教程重新回顾了一下几个概念：损失函数、模型等等，这次才算是比较清晰地搞明白了到底机器学习这个学习是学了什么东西。我的理解，机器学习">
+<meta property="og:updated_time" content="2015-10-08T14:56:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Recurrent Neural Network (RNN) 学习笔记（二）">
+<meta name="twitter:description" content="这两天学了不少东西，但是原来wordpress的新文章功能一直打不开，无奈之下只好迁移到Github来了，这样似乎逼格稍微高了一点（然而并咩有什么卵用）。
+现在又回归到了最初的基础知识部分，我发现果然我的数学功底和基础知识还是非常薄弱的，因此又去看了一遍吴恩达大神的视频教程重新回顾了一下几个概念：损失函数、模型等等，这次才算是比较清晰地搞明白了到底机器学习这个学习是学了什么东西。我的理解，机器学习">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Recurrent Neural Network (RNN) 学习笔记（二） | WangDiYi' Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WangDiYi' Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Born in 1994. Study in BUPT.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Recurrent Neural Network (RNN) 学习笔记（二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-08T13:33:02+08:00" content="2015-09-08">
+              2015-09-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学术/" itemprop="url" rel="index">
+                    <span itemprop="name">学术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这两天学了不少东西，但是原来wordpress的新文章功能一直打不开，无奈之下只好迁移到Github来了，这样似乎逼格稍微高了一点（然而并咩有什么卵用）。</p>
+<p>现在又回归到了最初的基础知识部分，我发现果然我的数学功底和基础知识还是非常薄弱的，因此又去看了一遍吴恩达大神的视频教程重新回顾了一下几个概念：损失函数、模型等等，这次才算是比较清晰地搞明白了到底机器学习这个学习是学了什么东西。我的理解，机器学习其实就是确定了模型之后，对模型中未知参数的一个学习。而确定模型的过程，学习参数的前提就是定下来损失函数，进而也就有了目标函数。为了能够达到预测准确率最高，用一个式子来表达这一目的，然后对这个式子的各个参数进行求解的过程就是所谓的学习。我用的比较多的方法就是梯度下降或者梯度上升法，这两个方法在我目前的认知里面没什么本质区别，不同点就是目标不同，梯度上升法是沿着梯度方向找到最大值，而梯度下降法也就是沿着梯度路径找到一个最小值。</p>
+<p>解决了梯度的概念问题，就要具体到怎么求解，其实说来简单，就是求导。列出目标函数，然后求目标函数在各个参数空间维度上的偏导数。以此来更新各个维度上的参数值。因为导数的结果就是梯度的方向，也就是变化最快的方向。每一步都沿着这个方向走，最后就能找到一个极值。这里的每一步的步长就是所谓的学习速率了。<br><a id="more"></a><br>困扰我的另一个问题其实是一个思路上的转变，应用RNN的电影推荐系统，传统上对电影采用one hot（1 of V）表示当作输入,我们不采用这个方法，而是embedding的思路，找到电影的另一种表达。这种表达比one hot方式更能体现电影之间的相关性。但是问题来了，采用embedding方式表达也就意味着需要对表达进行学习，也就是说作为系统输入的初始表达是随机产生的。我的疑惑在于，怎么能用不确定或者说不准确的东西来进行学习呢？我们更新参数的过程不久完全没有依据了么？其实这个问题涉及到的是一种思路的转变，或者说是机器学习本质的理解。在整个系统中，其实每个参数都可以是未知的，学习的对象恰恰就是这些参数，我们不是依靠一些参数学习出另一些参数，而是依靠一个结果，或者说一个目标函数，来进行学习。即：为了最小化误差函数，找到参数空间内的一个参数向量，这个向量中的参数可以是任意参数，对于RNN系统，不仅仅是U、V、W三个矩阵，也可以是输入的表达。</p>
+<p>或者用另一种更加容易思考的方式，系统的输入仍然采用one hot的方式，但是在输入RNN之前先乘上一个矩阵，这个矩阵可以认为是一个embedding的参数矩阵。这样经过矩阵乘法之后的结果就是某一步电影的embedding表示了。然后把这个矩阵也作为参数学习的一部分，如此一来似乎更加容易想了。</p>
+<p>今天解决的问题是确定目标函数，因为RNN电影推荐不止涉及到正样本，我们还希望预测结果和负样本之间的距离尽可能大，因此采用nagative sampling的方法，借鉴了基于negative sampling的CBOW模型的目标函数。负样本采样的原则就是对观影记录数据库中出现次数多的电影进行采样构成NEG（负样本集合）。</p>
+<p>今天下午争取推导出具体的梯度更新公式，傍晚更新。</p>
+<p>p.s.：还要学习一下markdown语句的用法以及在博客中添加图片的方法。</p>
+<hr>
+<hr>
+<hr>
+<h1 id="9-9上午更新"><a href="#9-9上午更新" class="headerlink" title="9.9上午更新"></a>9.9上午更新</h1><p>因为宿舍的电脑并没有配置hexo所以只能到单位来更新，昨天一下午在研究上没有任何进展，折腾了一下午博客所以并没有好好推导233333.<br>markdown语法还是非常容易学习嗒这篇博客就是我用md语法写的第一篇博客，感觉高大上了不少，而且mac上面的这个mou编辑器</p>
+<h3 id="简直就是艺术"><a href="#简直就是艺术" class="headerlink" title="简直就是艺术"></a>简直就是艺术</h3><p>为了回宿舍也能更新博客，我特意把theme文件夹和config文件传到了谷歌云盘然后把source文件夹整了一个新的repo放到了github上面。因为主题和配置文件更新不会很频繁，而博文则是每次都要更新，所以弄到github上面每次写完push一下就可以了。网上并没有具体的两台电脑间迁移的教程。我现在还没有在宿舍电脑上具体实现，可能还有跨系统的问题会出现。今晚回去果断当一次小白鼠.  就到这里，今天RNN一定要继续推进了。。。结尾吐槽一下北邮教务、、、算了。。。无力吐槽。。。。</p>
+<p>晚上更新RNN第三篇  </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/06/git-e4-bd-bf-e7-94-a8-e7-ac-94-e8-ae-b0/" rel="next" title="Git使用笔记（一）">
+                <i class="fa fa-chevron-left"></i> Git使用笔记（一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/13/Understanding Convolutions/" rel="prev" title="Understanding Convolutions">
+                Understanding Convolutions <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="王胖胖" />
+          <p class="site-author-name" itemprop="name">王胖胖</p>
+          <p class="site-description motion-element" itemprop="description">Born in 1994. Study in BUPT.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iyidgnaw" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1660880880/home?wvr=5" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wang-hao-qi-31" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imxiqi.com" title="西奇" target="_blank">西奇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuyuebupt.github.io/" title="吴岳" target="_blank">吴岳</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#9-9上午更新"><span class="nav-number">1.</span> <span class="nav-text">9.9上午更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简直就是艺术"><span class="nav-number">1.0.1.</span> <span class="nav-text">简直就是艺术</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王胖胖</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

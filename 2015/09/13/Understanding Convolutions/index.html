@@ -1,0 +1,738 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习,深度学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文由陈平、王迪一翻译自Christopher Olah大神的博文Understanding Convolutions  
+This post was translated from Christopher Olah‘s article Understanding Convolutions by ChenHaoPing &amp;amp; WangDiYi. If there are any infrin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Understanding Convolutions">
+<meta property="og:url" content="http://yoursite.com/2015/09/13/Understanding Convolutions/index.html">
+<meta property="og:site_name" content="WangDiYi' Blog">
+<meta property="og:description" content="本文由陈平、王迪一翻译自Christopher Olah大神的博文Understanding Convolutions  
+This post was translated from Christopher Olah‘s article Understanding Convolutions by ChenHaoPing &amp;amp; WangDiYi. If there are any infrin">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-fagb.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-split-21.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-splits-12-03.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-OnePath.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-SumPaths.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Reverse.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-BackProb.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate-Align.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate-Sep.png">
+<meta property="og:image" content="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Wiki-BoxConvAnim.gif">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-TwoDim.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/RiverTrain-ImageConvDiagram.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Blur.png =400x">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Edge.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Conv-9-Conv2-XY.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Conv-9-Conv2-XY-W.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/1.png">
+<meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/2.png">
+<meta property="og:image" content="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Conv2-5x5-Conv2-XY.png">
+<meta property="og:updated_time" content="2015-10-08T14:57:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Understanding Convolutions">
+<meta name="twitter:description" content="本文由陈平、王迪一翻译自Christopher Olah大神的博文Understanding Convolutions  
+This post was translated from Christopher Olah‘s article Understanding Convolutions by ChenHaoPing &amp;amp; WangDiYi. If there are any infrin">
+<meta name="twitter:image" content="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-fagb.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Understanding Convolutions | WangDiYi' Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">WangDiYi' Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Born in 1994. Study in BUPT.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Understanding Convolutions
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-09-13T23:59:54+08:00" content="2015-09-13">
+              2015-09-13
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/学术/" itemprop="url" rel="index">
+                    <span itemprop="name">学术</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文由陈平、王迪一翻译自<em>Christopher Olah</em>大神的博文<a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>  </p>
+<p>This post was translated from <em>Christopher Olah</em>‘s article <em>Understanding Convolutions</em> by ChenHaoPing &amp; WangDiYi. If there are any infringing materials, please let us know and we will delete immediately. </p>
+<p>在上一篇博文中，我们在没有涉及任何数学知识情况下对卷积神经网络有了初步了解。为了更深入地理解卷积神经网络，我们需要明白，何为卷积？<br>如果仅仅是为了理解卷积神经网络，那么大概了解一下卷积就足够了。但这系列文章目的是让我们走在卷积神经网络前沿并探究新的可能，所有我们有必要深入了解什么是卷积。<br>幸运的是，一些例子能让卷积的概念变得十分简单明了。</p>
+<h3 id="球体下落的启示"><a href="#球体下落的启示" class="headerlink" title="球体下落的启示"></a>球体下落的启示</h3><p>试想一下，我们从某一高度释放球让它做自由落体运动，并假设球在地面上只做一维运动（某一条线上）。球第一次释放并且在地面上静止后，在静止处上方我们以另一高度让球做第二次下落运动。那么，球最后停止的位置和最开始释放处水平距离为c的可能性有多大呢？</p>
+<p>我们把这过程分解一下。第一次下落后，球停止在离释放点a单位距离的可能性是f(a), f是概率分布。</p>
+<p>球第一次下落并静止后，我们将球拿到静止处上方以另一高度让球第二次下落，球最终停止处与第二次释放处距离是b单位距离的可能性是g(b), 如果两次释放高度不同，那么g和f是两个不同的概率分布。</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-fagb.png" alt="image"></p>
+<p>假设第一次下落球在地面上运动了距离a，第二次下落球在地面上运动了距离b，而两次下落球在水平面上运动总距离是c，则有a+b=c，这种情况发生的概率可以简单表示成f(a).f(b)。</p>
+<p>从离散的角度来看这个例子，假设总运动距离c=3，第一次滚动距离a=2，那么第二次滚动距离b必须是1，所有概率表示为f(2).g(1)。</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-split-21.png" alt="image"></p>
+<p>然而，这不是c=3的唯一可能，我们也可以让第一次运动a=1，第二次运动b=2。或者a=0，b=3…… 只要两次运动距离和c=3，a和b有无限种可能的组合。</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-splits-12-03.png" alt="image"></p>
+<p>上述两种可能各种的概率表示依次是f(1).g(2)和f(0).g(3)。</p>
+<p>为了得到总运动距离为c的所有可能结果，我们不能只考虑距离为c一种可能。取而代之，我们考虑把c分割成a和b的所有情况，并将每种情况概率相加。<br>…  f(0)⋅g(3) + f(1)⋅g(2) + f(2)⋅g(1)  …</p>
+<p>我们知道对每种a+b=c的情况，其概率可表示为f(a).g(b)。因此，我们可以对每种a+b=c的情况做概率求和得到总概率为：</p>
+<p>∑a+b=cf(a)⋅g(b)</p>
+<p>xxxxxxxxxxxxxxxxxxxxxxxxxxx<br>Turns out, we’re doing a convolution! In particular, the convolution of f and g, evaluated at c is defined:<br>事实上，这就是一个卷积的过程！特别地，f和g的卷积，对c的评估定义如下（这句不知怎么翻）<br>xxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+<p>(f∗g)(c)=∑a+b=cf(a)⋅g(b)<br>如果用b=c-a替换，则有<br>(f∗g)(c)=∑af(a)⋅g(c−a)<br>这正是标准的卷积定义。</p>
+<p>更具体地说，我们可以从球可能停止的位置来思考。球第一次下落后，球停止在中转位置距离为a处的概率是f(a),如果球第一次停在了距离a处，那么球最终停在距离c处的概率是g(c-a)<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-OnePath.png" alt="image"></p>
+<p>为了完成卷积，我们考虑所有的中转位置。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-SumPaths.png" alt="image"></p>
+<h3 id="卷积的可视化"><a href="#卷积的可视化" class="headerlink" title="卷积的可视化"></a>卷积的可视化</h3><p>有一个非常好的例子可以帮助我们更好地理解卷积的过程。  </p>
+<p>首先，基于对下图的观察。我们假设一个小球运动到距离其初始位置x单位的概率为f(x)（如下左图）。然后，紧接着我们定义小球从距离其初始位置x的点运动到初始位置的概率为 f(−x)（如下右图）。</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Reverse.png" alt="image">  </p>
+<p>设想，小球第二次下落后的位置为c，并且已知小球第一次下落的过渡位置为a，这一概率是多少呢？</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-BackProb.png" alt="image"><br>第一次下落后距离为a则第二次落到c的概率是:  </p>
+<p>g(−(a−c))=g(c−a)  </p>
+<p>然后我们考虑，已知每次二段下落后距离为c的情况下，第一次下落后到达一个<strong>过渡位置</strong>的概率，即我们之前提到的第一次下落位于a的概率f(a)。  </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate.png" alt="image"><br>对所有的a求和，我们就得到了卷积的结果。  </p>
+<p>这种表示法使得我们可以在一幅图里面形象地对一个值为c的卷积结果进行估计。如果我们只关注坐标轴的一侧（因为坐标轴是对称的），当c的位置在一侧改变时，我们可以对其卷积的结果进行估计，这有助于我们整体把握卷积的概念。    </p>
+<p>具体来说，我们可以看到c点的位置与原始位置分布在一条线上时卷积的结果达到峰值。（此时卷积的式子中求和项数达到最大值）</p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate-Align.png" alt="image">  </p>
+<p>随着c点的位置沿着坐标轴远离，我们可以看到结果中的项数逐渐减少，直到最右端时达到最小。   </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate-Sep.png" alt="image"><br>当我们把这种思路下的结果用动图表示出来，我们就要可以直观的看到卷积的结果了。  </p>
+<p>下图，我们用两个箱型图变现了卷积的过程：</p>
+<p><img src="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Wiki-BoxConvAnim.gif" alt="image"><br>从这种角度看待卷积，我们发现CNN的概念变得更加直观。接下来我们一起思考一种非概率的模型。卷积操作有时也被应用在音频处理上。比如，我们经常使用两个冲击作为采样函数。采样的结果中，在第一个冲击处得到输出，经过一个时延后，在第二个冲击处再次得到一个采样值作为第一次采样结果的延迟输出。 </p>
+<h3 id="高维卷积"><a href="#高维卷积" class="headerlink" title="高维卷积"></a>高维卷积</h3><p>卷积可以一般化，我们可以在更高的维度使用它。<br>我们还以球体下落为例，只是现在，球在水平面上的运动是不是一维的，而是二维的。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-TwoDim.png" alt="image"><br>卷积过程还是和之前的一样<br>(f∗g)(c)=∑a+b=cf(a)⋅g(b)</p>
+<p>只是这里的a，b，c是向量，更明确地表示是<br>(f∗g)(c1,c2)=∑a1+b1=c1a2+b2=c2f(a1,a2)⋅g(b1,b2)</p>
+<p>或者使用标准定义：<br>(f∗g)(c1,c2)=∑｀a1,a2f(a1,a2)⋅g(c1−a1, c2−a2)</p>
+<p>和一维卷积类似，我们可以把二维卷积看成一个函数在另一函数上移动，相乘并相加。</p>
+<p>二维卷积一个常见的应用是图像处理。把图像当做二维函数。许多图像转换方法都是图像函数和一个名为核函数的本地函数卷积的过程。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/RiverTrain-ImageConvDiagram.png" alt="image"><br>核在图像上每个位置点上移动，并计算被其覆盖住的像素点的加权和得到新的像素（核上的像素值是权值）。</p>
+<p>比如，通过一个3x3宫格来做像素平均能使图像变模糊。此时，核中方格中每个像素点值为1/9<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Blur.png =400x" alt="image"><br>我们还能探测图像的边界信息。此时核中两个相邻的像素点值为-1和1，其他地方像素值为0。也就是说，当核与其覆盖的图像像素相乘时，我们让相邻的像素点值相减。如果相邻的像素点类似，那么相减得到值约为0,；然而在垂直于边界方向处，相邻像素点差异很大。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Edge.png" alt="image">  </p>
+<p>gimp documentation 中有很多其他的例子。 </p>
+<h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><p>那么，卷积操作和卷积神经网络是如何联系起来的呢？ </p>
+<p>首先我们考虑一维卷积神经网络，其包含一个卷积层，一个输入层{xn} 一个输出层{yn}，像我们在上一篇文章中提到的那样：<a href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/" target="_blank" rel="external">上一篇文章的链接</a><br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Conv-9-Conv2-XY.png" alt="image"></p>
+<p>由图可得，输入层与输出层之间的函数关系为：</p>
+<p>yn=A(xn,xn+1,…)  </p>
+<p>通常来说，A表示一个多重的神经网络层。但是为了简便，我们先讨论一重网络的情况。回想一下，神经网络中一个神经节点可以表示成：</p>
+<p>σ(w0x0+w1x1+w2x2 … +b)  </p>
+<p>在这个公式中，x0, x1… 代表输入；w0, w1, …代表神经节点与输入之间连接的权重。 A negative weight means that an input inhibits the neuron from firing, while a positive weight encourages it to.这些权重就是神经网络节点的主要特征，它们决定了神经网络节点的行为。当我们说两个节点一致实际上就是说这两个节点的权重向量完全一致。正是这些权重，决定了卷积神经网络可以为我们处理的任务。  </p>
+<p>具体来说，我们将整个神经网络层表达成一个式子，而不是分开表示。方法就是使用一个权重矩阵，W：  </p>
+<p>y=σ(Wx+b)  </p>
+<p>由此我们可以得到： </p>
+<p>y0=σ(W0,0x0+W0,1x1+W0,2x2…)</p>
+<p>y1=σ(W1,0x0+W1,1x1+W1,2x2…)  </p>
+<p>参数矩阵的每一行，描述了神经节点如何与输入相连。我们再回到卷积层，因为这一层中的神经节点有时是一致的，相应的，很多权值也会反复在权值矩阵中出现。  </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/Conv-9-Conv2-XY-W.png" alt="image">  </p>
+<p>上图描述的这种神经网络可以表达成如下等式：  </p>
+<p>y0=σ(W0x0+W1x1−b)</p>
+<p>y1=σ(W0x1+W1x2−b)    </p>
+<p>然而，更加普遍的情况是，各个神经节点的表示是不同的（即它们的权值向量是不同的）：  </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/1.png" alt="image"></p>
+<p>上述矩阵所描述的卷积层是和我们之前看的是不同的。大多数情况下，权值会已一个短序列形式重复出现。同时，因为神经节点并不会与所有输入相连，参数矩阵大多是稀疏的。   </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/2.png" alt="image"> </p>
+<p>与上述矩阵的点乘，其实和卷积一个向量[…0,w1,w0,0…]是一样的。当这个向量（可以理解为一个卷积窗）滑动到输入层的不同位置时，它可以代表相应位置上的神经节点。  </p>
+<p>那么二维的卷积层又是什么样呢？  </p>
+<p><img src="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Conv2-5x5-Conv2-XY.png" alt="image"><br>上图可以理解为，卷积窗由一个向量变成了一个矩阵，在二维的输入空间滑动，在对应位置表示对应的神经节点。  </p>
+<p>回想我们上文提到的，用卷积操作获取一个图片的轮廓，就是通过在每一个像素点上滑动核（即二维卷积窗），由此实现遍历了每一个像素的卷积操作。  </p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>在这片博文中，我们介绍了很多个数学架构，导致我们忘了我们的目的。在概率论和计算机学中，卷积操作是一个非常有用的工具。然而在神经网络中引入卷积可以带来什么呢？  </p>
+<hr>
+<h1 id="明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！"><a href="#明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！" class="headerlink" title="明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！"></a>明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！</h1>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/08/Recurrent-Neural-Network-RNN-学习笔记（二）/" rel="next" title="Recurrent Neural Network (RNN) 学习笔记（二）">
+                <i class="fa fa-chevron-left"></i> Recurrent Neural Network (RNN) 学习笔记（二）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/14/Conv-Nets-A-Modular-Perspective/" rel="prev" title="Conv Nets: A Modular Perspective">
+                Conv Nets: A Modular Perspective <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="王胖胖" />
+          <p class="site-author-name" itemprop="name">王胖胖</p>
+          <p class="site-description motion-element" itemprop="description">Born in 1994. Study in BUPT.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iyidgnaw" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1660880880/home?wvr=5" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wang-hao-qi-31" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imxiqi.com" title="西奇" target="_blank">西奇</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wuyuebupt.github.io/" title="吴岳" target="_blank">吴岳</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#球体下落的启示"><span class="nav-number">1.</span> <span class="nav-text">球体下落的启示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积的可视化"><span class="nav-number">2.</span> <span class="nav-text">卷积的可视化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高维卷积"><span class="nav-number">3.</span> <span class="nav-text">高维卷积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积神经网络"><span class="nav-number">4.</span> <span class="nav-text">卷积神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">5.</span> <span class="nav-text">结语</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！"><span class="nav-number"></span> <span class="nav-text">明日更新。。。问题特么太多了。。。明天一定要换图床，这特么我手动打了半天路径结果图片全挂啦！！！！</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王胖胖</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
