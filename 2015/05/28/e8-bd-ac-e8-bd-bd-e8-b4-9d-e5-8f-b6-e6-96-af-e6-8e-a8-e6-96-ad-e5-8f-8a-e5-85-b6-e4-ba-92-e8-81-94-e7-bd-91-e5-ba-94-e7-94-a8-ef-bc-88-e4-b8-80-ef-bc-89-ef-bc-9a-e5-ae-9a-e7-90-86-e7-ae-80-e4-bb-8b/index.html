@@ -122,7 +122,7 @@ http://www.ruanyifeng.com/blog/2011/08/bayesian_inference_part_one.html
 <meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=P(A%7CB">
 <meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=P(A%7CB">
 <meta property="og:image" content="http://chart.googleapis.com/chart?cht=tx&chl=P(A%7CB">
-<meta property="og:updated_time" content="2015-09-08T07:38:54.000Z">
+<meta property="og:updated_time" content="2016-07-10T08:09:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(转载)贝叶斯推断及其互联网应用（一）：定理简介">
 <meta name="twitter:description" content="原文地址：
@@ -351,7 +351,18 @@ http://www.ruanyifeng.com/blog/2011/08/bayesian_inference_part_one.html
 <p><a href="http://www.ruanyifeng.com/blog/2011/08/bayesian_inference_part_one.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2011/08/bayesian_inference_part_one.html </a></p>
 <p>日期： <a href="http://www.ruanyifeng.com/blog/2011/08/" target="_blank" rel="external"><abbr class="published" title="2011-08-25T12:09:37+08:00">2011年8月25日</abbr></a>作者： <a href="http://www.ruanyifeng.com" target="_blank" rel="external">阮一峰</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2010/08/not_working_hard_for_a_big_company.html" target="_blank" rel="external">一年前</a>的这个时候，我正在翻译Paul Graham的<a href="http://www.ruanyifeng.com/docs/pg/" target="_blank" rel="external">《黑客与画家》</a>。</p>
-<!-- /div --><!-- div id="more" class="asset-more" -->那本书的第八章，写了一个非常具体的技术问题—-如何使用贝叶斯推断过滤垃圾邮件（<a href="http://www.paulgraham.com/spam.html" target="_blank" rel="external">英文版</a>）。<br><br>我没完全看懂那一章。当时是硬着头皮，按照字面意思把它译出来的。虽然译文质量还可以，但是心里很不舒服，下决心一定要搞懂它。<br><br>一年过去了，我读了一些概率论文献，逐渐发现贝叶斯推断并不难。原理的部分相当容易理解，不需要用到高等数学。<br><br>下面就是我的学习笔记。需要声明的是，我并不是这方面的专家，数学其实是我的弱项。欢迎大家提出宝贵意见，让我们共同学习和提高。<br><br>=====================================<br><br><strong>贝叶斯推断及其互联网应用</strong><br><br>作者：阮一峰<br><br><img src="http://image.beekka.com/blog/201108/bg2011082507.jpg" alt=""><br><br><strong>一、什么是贝叶斯推断</strong><br><br>贝叶斯推断（<a href="http://en.wikipedia.org/wiki/Bayesian_inference" target="_blank" rel="external">Bayesian inference</a>）是一种统计学方法，用来估计统计量的某种性质。<br><br>它是贝叶斯定理（<a href="http://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank" rel="external">Bayes’ theorem</a>）的应用。英国数学家托马斯·贝叶斯（Thomas Bayes）在1763年发表的一篇论文中，首先提出了这个定理。<br><br><img src="http://image.beekka.com/blog/201108/bg2011082501.jpg" alt=""><br><br>贝叶斯推断与其他统计学推断方法截然不同。它建立在主观判断的基础上，也就是说，你可以不需要客观证据，先估计一个值，然后根据实际结果不断修正。正是因为它的主观性太强，曾经遭到许多统计学家的诟病。<br><br>贝叶斯推断需要大量的计算，因此历史上很长一段时间，无法得到广泛应用。只有计算机诞生以后，它才获得真正的重视。人们发现，许多统计量是无法事先进行客观判断的，而互联网时代出现的大型数据集，再加上高速运算能力，为验证这些统计量提供了方便，也为应用贝叶斯推断创造了条件，它的威力正在日益显现。<br><br><a id="more"></a>
+<!-- /div --><!-- div id="more" class="asset-more" -->那本书的第八章，写了一个非常具体的技术问题—-如何使用贝叶斯推断过滤垃圾邮件（<a href="http://www.paulgraham.com/spam.html" target="_blank" rel="external">英文版</a>）。<br><br>我没完全看懂那一章。当时是硬着头皮，按照字面意思把它译出来的。虽然译文质量还可以，但是心里很不舒服，下决心一定要搞懂它。<br><br>一年过去了，我读了一些概率论文献，逐渐发现贝叶斯推断并不难。原理的部分相当容易理解，不需要用到高等数学。<br><br>下面就是我的学习笔记。需要声明的是，我并不是这方面的专家，数学其实是我的弱项。欢迎大家提出宝贵意见，让我们共同学习和提高。<br><a id="more"></a>
+<p>=====================================</p>
+<p><strong>贝叶斯推断及其互联网应用</strong></p>
+<p>作者：阮一峰</p>
+<p><img src="http://image.beekka.com/blog/201108/bg2011082507.jpg" alt=""></p>
+<p><strong>一、什么是贝叶斯推断</strong></p>
+<p>贝叶斯推断（<a href="http://en.wikipedia.org/wiki/Bayesian_inference" target="_blank" rel="external">Bayesian inference</a>）是一种统计学方法，用来估计统计量的某种性质。</p>
+<p>它是贝叶斯定理（<a href="http://en.wikipedia.org/wiki/Bayes%27_theorem" target="_blank" rel="external">Bayes’ theorem</a>）的应用。英国数学家托马斯·贝叶斯（Thomas Bayes）在1763年发表的一篇论文中，首先提出了这个定理。</p>
+<p><img src="http://image.beekka.com/blog/201108/bg2011082501.jpg" alt=""></p>
+<p>贝叶斯推断与其他统计学推断方法截然不同。它建立在主观判断的基础上，也就是说，你可以不需要客观证据，先估计一个值，然后根据实际结果不断修正。正是因为它的主观性太强，曾经遭到许多统计学家的诟病。</p>
+<p>贝叶斯推断需要大量的计算，因此历史上很长一段时间，无法得到广泛应用。只有计算机诞生以后，它才获得真正的重视。人们发现，许多统计量是无法事先进行客观判断的，而互联网时代出现的大型数据集，再加上高速运算能力，为验证这些统计量提供了方便，也为应用贝叶斯推断创造了条件，它的威力正在日益显现。</p>
+<!--more-->
 <p><strong>二、贝叶斯定理</strong></p>
 <p>要理解贝叶斯推断，必须先理解贝叶斯定理。后者实际上就是计算”条件概率”的公式。</p>
 <p>所谓”条件概率”（Conditional probability），就是指在事件B发生的情况下，事件A发生的概率，用P(A|B)来表示。</p>

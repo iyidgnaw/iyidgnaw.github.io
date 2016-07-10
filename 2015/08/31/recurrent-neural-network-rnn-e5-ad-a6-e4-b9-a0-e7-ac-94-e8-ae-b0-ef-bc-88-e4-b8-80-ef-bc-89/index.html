@@ -95,7 +95,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
 Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
 最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
 <meta property="og:image" content="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png">
-<meta property="og:updated_time" content="2015-09-08T03:12:38.000Z">
+<meta property="og:updated_time" content="2016-07-10T08:09:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recurrent Neural Network (RNN) 学习笔记（一）">
 <meta name="twitter:description" content="参考文献：
@@ -320,12 +320,11 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
       
         <p>参考文献：</p>
 <p>Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012</p>
-<p>最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。</p>
-<p>今天这篇博士论文的过程中，我一直感觉非常迷糊的地方就是RNN整个过程中各个向量或矩阵的维数。</p>
+<p>最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。<br><a id="more"></a><br>今天这篇博士论文的过程中，我一直感觉非常迷糊的地方就是RNN整个过程中各个向量或矩阵的维数。</p>
 <p><a href="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56.png" target="_blank" rel="external"><img src="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png" alt="屏幕快照 2015-08-31 上午11.00.56"></a></p>
 <p>上图就是RNN的示意图，根据每次的输入w(t)以及历史序列结果s(t-1)算出当前s(t),再由此算出y(t),学习方法采用的就是梯度下降的方法，论文中并没有具体展开成矩阵和向量的表示形式。但是我觉得这里还是需要具体说一下的（对于我这种小白来说）。</p>
 <p>w(t)的生成方式就是1 of V，也就是维数等于整个词典的维数，在所代表的词的那一维值为1其他均为0。因此w(t)实际上是一个V维的向量（V是词典长度）。那么根据文中公式，U矩阵应该是一个V*J维的矩阵。SO！！问题来了，J怎么确定下来？后续的K（也就是y(t)的维数）是怎么确定下来的？</p>
-<p>这个问题有待解决。<br><a id="more"></a><br>另外一个问题是：两种梯度下降算法的区别。第一种梯度下降算法，也就是论文作者的算法，是在每一轮中都计算出y(t)并已下一轮的输入作为结果计算误差并更新U，V，W三个矩阵，也就是说，在s(t)产生的同时,也会随之优化出U(t+1)，V(t+1)，W(t+1)作为下一轮的参数。另一种算法中，采用一组随机生成的U、V、W矩阵，在每一轮中不进行优化，一直计算到最后的结果，也就是最后一轮的y(t).然后再逆向更新。</p>
+<p>这个问题有待解决。<br><!--more--><br>另外一个问题是：两种梯度下降算法的区别。第一种梯度下降算法，也就是论文作者的算法，是在每一轮中都计算出y(t)并已下一轮的输入作为结果计算误差并更新U，V，W三个矩阵，也就是说，在s(t)产生的同时,也会随之优化出U(t+1)，V(t+1)，W(t+1)作为下一轮的参数。另一种算法中，采用一组随机生成的U、V、W矩阵，在每一轮中不进行优化，一直计算到最后的结果，也就是最后一轮的y(t).然后再逆向更新。</p>
 <p>毫无疑问，这两种算法产生的Y（t）是不同的，更新的结果也会是不同的。那么这两种方法到底哪一个更好？各自的理论依据是什么？</p>
 <p>今天下午争取解决这两个问题，晚上更新。</p>
 <p>&nbsp;</p>

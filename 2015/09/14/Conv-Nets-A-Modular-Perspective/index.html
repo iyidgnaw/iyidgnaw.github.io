@@ -104,7 +104,7 @@ This post was translated from Christopher Olah‘s article Conv Nets: A Modular 
 <meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Conv2-9x5-Conv2Max2Conv2.png">
 <meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Conv-A.png">
 <meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/Conv-A-NIN.png">
-<meta property="og:updated_time" content="2015-10-08T14:57:54.000Z">
+<meta property="og:updated_time" content="2016-07-10T08:07:55.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Conv Nets: A Modular Perspective">
 <meta name="twitter:description" content="本文由陈平、王迪一翻译自Christopher Olah大神的博文Conv Nets: A Modular Perspective  
@@ -328,7 +328,7 @@ This post was translated from Christopher Olah‘s article Conv Nets: A Modular 
       
         <p>本文由陈平、王迪一翻译自<em>Christopher Olah</em>大神的博文<a href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/" target="_blank" rel="external">Conv Nets: A Modular Perspective</a>  </p>
 <p>This post was translated from <em>Christopher Olah</em>‘s article <em>Conv Nets: A Modular Perspective</em> by ChenHaoPing &amp; WangDiYi. If there are any infringing materials, please let us know and we will delete immediately.</p>
-<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>在最近几年间，深度神经网络为模式识别领域的很多难题带来了突破性的进展，比如计算机视觉和语音识别领域。这些突破性进展其实都来源于一种特别的神经网络，我们称之为<em>卷积神经网络</em>。  </p>
+<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>在最近几年间，深度神经网络为模式识别领域的很多难题带来了突破性的进展，比如计算机视觉和语音识别领域。这些突破性进展其实都来源于一种特别的神经网络，我们称之为<em>卷积神经网络</em>。  <a id="more"></a></p>
 <p>简单来说，卷积神经网络可以认为是由若干个相同的神经节点构成的网络。卷积神经网络具有大量节点并且具有宏大的模型结构，有时特征向量空间的维度非常庞大－－这些特征向量由来描述一个神经网络的行为。 但是因为其具有的重复性，我们需要学习的参数相对来说非常少。  </p>
 <p><img src="http://7xls2i.com1.z0.glb.clouddn.com/Conv2-9x5-Conv2Conv2.png" alt="image"></p>
 <p>这种结构上的重复性，也体现在计算机科学和数学领域。例如当我们编写代码时，我们事先声明一个函数，然后反复调用它－－而不是在每一个需要使用的地方重新编写代码。这种重复使用，使得我们的程序更加简洁，也避免了错误的发生。相应的，当我们构建一个卷积神经网络时，可以通过学习得到一个神经节点的参数，并把以这个节点为模板复制出若干个一致的节点组成网络，这使得整个网络参数的学习非常简便。  </p>

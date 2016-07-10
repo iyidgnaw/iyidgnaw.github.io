@@ -112,7 +112,7 @@ This post was translated from Christopher Olah‘s article Understanding Convolu
 <meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/1.png">
 <meta property="og:image" content="http://7xls2i.com1.z0.glb.clouddn.com/2.png">
 <meta property="og:image" content="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Conv2-5x5-Conv2-XY.png">
-<meta property="og:updated_time" content="2015-10-08T14:57:26.000Z">
+<meta property="og:updated_time" content="2016-07-10T08:09:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Understanding Convolutions">
 <meta name="twitter:description" content="本文由陈平、王迪一翻译自Christopher Olah大神的博文Understanding Convolutions  
@@ -335,8 +335,7 @@ This post was translated from Christopher Olah‘s article Understanding Convolu
 
       
         <p>本文由陈平、王迪一翻译自<em>Christopher Olah</em>大神的博文<a href="http://colah.github.io/posts/2014-07-Understanding-Convolutions/" target="_blank" rel="external">Understanding Convolutions</a>  </p>
-<p>This post was translated from <em>Christopher Olah</em>‘s article <em>Understanding Convolutions</em> by ChenHaoPing &amp; WangDiYi. If there are any infringing materials, please let us know and we will delete immediately. </p>
-<p>在上一篇博文中，我们在没有涉及任何数学知识情况下对卷积神经网络有了初步了解。为了更深入地理解卷积神经网络，我们需要明白，何为卷积？<br>如果仅仅是为了理解卷积神经网络，那么大概了解一下卷积就足够了。但这系列文章目的是让我们走在卷积神经网络前沿并探究新的可能，所有我们有必要深入了解什么是卷积。<br>幸运的是，一些例子能让卷积的概念变得十分简单明了。</p>
+<p>This post was translated from <em>Christopher Olah</em>‘s article <em>Understanding Convolutions</em> by ChenHaoPing &amp; WangDiYi. If there are any infringing materials, please let us know and we will delete immediately.<br><a id="more"></a><br>在上一篇博文中，我们在没有涉及任何数学知识情况下对卷积神经网络有了初步了解。为了更深入地理解卷积神经网络，我们需要明白，何为卷积？<br>如果仅仅是为了理解卷积神经网络，那么大概了解一下卷积就足够了。但这系列文章目的是让我们走在卷积神经网络前沿并探究新的可能，所有我们有必要深入了解什么是卷积。<br>幸运的是，一些例子能让卷积的概念变得十分简单明了。</p>
 <h3 id="球体下落的启示"><a href="#球体下落的启示" class="headerlink" title="球体下落的启示"></a>球体下落的启示</h3><p>试想一下，我们从某一高度释放球让它做自由落体运动，并假设球在地面上只做一维运动（某一条线上）。球第一次释放并且在地面上静止后，在静止处上方我们以另一高度让球做第二次下落运动。那么，球最后停止的位置和最开始释放处水平距离为c的可能性有多大呢？</p>
 <p>我们把这过程分解一下。第一次下落后，球停止在离释放点a单位距离的可能性是f(a), f是概率分布。</p>
 <p>球第一次下落并静止后，我们将球拿到静止处上方以另一高度让球第二次下落，球最终停止处与第二次释放处距离是b单位距离的可能性是g(b), 如果两次释放高度不同，那么g和f是两个不同的概率分布。</p>
@@ -368,15 +367,15 @@ This post was translated from Christopher Olah‘s article Understanding Convolu
 <p>随着c点的位置沿着坐标轴远离，我们可以看到结果中的项数逐渐减少，直到最右端时达到最小。   </p>
 <p><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-Intermediate-Sep.png" alt="image"><br>当我们把这种思路下的结果用动图表示出来，我们就要可以直观的看到卷积的结果了。  </p>
 <p>下图，我们用两个箱型图变现了卷积的过程：</p>
-<p><img src="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Wiki-BoxConvAnim.gif" alt="image"><br>从这种角度看待卷积，我们发现CNN的概念变得更加直观。接下来我们一起思考一种非概率的模型。卷积操作有时也被应用在音频处理上。比如，我们经常使用两个冲击作为采样函数。采样的结果中，在第一个冲击处得到输出，经过一个时延后，在第二个冲击处再次得到一个采样值作为第一次采样结果的延迟输出。 </p>
+<p><img src="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Wiki-BoxConvAnim.gif" alt="image"><br>从这种角度看待卷积，我们发现CNN的概念变得更加直观。接下来我们一起思考一种非概率的模型。卷积操作有时也被应用在音频处理上。比如，我们经常使用两个冲击作为采样函数。采样的结果中，在第一个冲击处得到输出，经过一个时延后，在第二个冲击处再次得到一个采样值作为第一次采样结果的延迟输出。</p>
 <h3 id="高维卷积"><a href="#高维卷积" class="headerlink" title="高维卷积"></a>高维卷积</h3><p>卷积可以一般化，我们可以在更高的维度使用它。<br>我们还以球体下落为例，只是现在，球在水平面上的运动是不是一维的，而是二维的。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/ProbConv-TwoDim.png" alt="image"><br>卷积过程还是和之前的一样<br>(f∗g)(c)=∑a+b=cf(a)⋅g(b)</p>
 <p>只是这里的a，b，c是向量，更明确地表示是<br>(f∗g)(c1,c2)=∑a1+b1=c1a2+b2=c2f(a1,a2)⋅g(b1,b2)</p>
 <p>或者使用标准定义：<br>(f∗g)(c1,c2)=∑｀a1,a2f(a1,a2)⋅g(c1−a1, c2−a2)</p>
 <p>和一维卷积类似，我们可以把二维卷积看成一个函数在另一函数上移动，相乘并相加。</p>
 <p>二维卷积一个常见的应用是图像处理。把图像当做二维函数。许多图像转换方法都是图像函数和一个名为核函数的本地函数卷积的过程。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/RiverTrain-ImageConvDiagram.png" alt="image"><br>核在图像上每个位置点上移动，并计算被其覆盖住的像素点的加权和得到新的像素（核上的像素值是权值）。</p>
 <p>比如，通过一个3x3宫格来做像素平均能使图像变模糊。此时，核中方格中每个像素点值为1/9<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Blur.png =400x" alt="image"><br>我们还能探测图像的边界信息。此时核中两个相邻的像素点值为-1和1，其他地方像素值为0。也就是说，当核与其覆盖的图像像素相乘时，我们让相邻的像素点值相减。如果相邻的像素点类似，那么相减得到值约为0,；然而在垂直于边界方向处，相邻像素点差异很大。<br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Gimp-Edge.png" alt="image">  </p>
-<p>gimp documentation 中有很多其他的例子。 </p>
-<h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><p>那么，卷积操作和卷积神经网络是如何联系起来的呢？ </p>
+<p>gimp documentation 中有很多其他的例子。</p>
+<h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><p>那么，卷积操作和卷积神经网络是如何联系起来的呢？</p>
 <p>首先我们考虑一维卷积神经网络，其包含一个卷积层，一个输入层{xn} 一个输出层{yn}，像我们在上一篇文章中提到的那样：<a href="http://colah.github.io/posts/2014-07-Conv-Nets-Modular/" target="_blank" rel="external">上一篇文章的链接</a><br><img src="http://7xls2i.com1.z0.glb.clouddn.com/Conv-9-Conv2-XY.png" alt="image"></p>
 <p>由图可得，输入层与输出层之间的函数关系为：</p>
 <p>yn=A(xn,xn+1,…)  </p>
@@ -385,7 +384,7 @@ This post was translated from Christopher Olah‘s article Understanding Convolu
 <p>在这个公式中，x0, x1… 代表输入；w0, w1, …代表神经节点与输入之间连接的权重。 A negative weight means that an input inhibits the neuron from firing, while a positive weight encourages it to.这些权重就是神经网络节点的主要特征，它们决定了神经网络节点的行为。当我们说两个节点一致实际上就是说这两个节点的权重向量完全一致。正是这些权重，决定了卷积神经网络可以为我们处理的任务。  </p>
 <p>具体来说，我们将整个神经网络层表达成一个式子，而不是分开表示。方法就是使用一个权重矩阵，W：  </p>
 <p>y=σ(Wx+b)  </p>
-<p>由此我们可以得到： </p>
+<p>由此我们可以得到：</p>
 <p>y0=σ(W0,0x0+W0,1x1+W0,2x2…)</p>
 <p>y1=σ(W1,0x0+W1,1x1+W1,2x2…)  </p>
 <p>参数矩阵的每一行，描述了神经节点如何与输入相连。我们再回到卷积层，因为这一层中的神经节点有时是一致的，相应的，很多权值也会反复在权值矩阵中出现。  </p>
@@ -396,7 +395,7 @@ This post was translated from Christopher Olah‘s article Understanding Convolu
 <p>然而，更加普遍的情况是，各个神经节点的表示是不同的（即它们的权值向量是不同的）：  </p>
 <p><img src="http://7xls2i.com1.z0.glb.clouddn.com/1.png" alt="image"></p>
 <p>上述矩阵所描述的卷积层是和我们之前看的是不同的。大多数情况下，权值会已一个短序列形式重复出现。同时，因为神经节点并不会与所有输入相连，参数矩阵大多是稀疏的。   </p>
-<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/2.png" alt="image"> </p>
+<p><img src="http://7xls2i.com1.z0.glb.clouddn.com/2.png" alt="image"></p>
 <p>与上述矩阵的点乘，其实和卷积一个向量[…0,w1,w0,0…]是一样的。当这个向量（可以理解为一个卷积窗）滑动到输入层的不同位置时，它可以代表相应位置上的神经节点。  </p>
 <p>那么二维的卷积层又是什么样呢？  </p>
 <p><img src="http://colah.github.io/posts/2014-07-Understanding-Convolutions/img/Conv2-5x5-Conv2-XY.png" alt="image"><br>上图可以理解为，卷积窗由一个向量变成了一个矩阵，在二维的输入空间滑动，在对应位置表示对应的神经节点。  </p>

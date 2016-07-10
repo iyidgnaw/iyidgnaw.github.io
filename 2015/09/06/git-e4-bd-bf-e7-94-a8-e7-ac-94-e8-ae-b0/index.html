@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="实验室项目最近进入代码实现阶段，几个人看同一份代码，修改后的代码通过qq传来传去太容易乱，所以果断启用Git。写这篇日志记录一些基本操作备忘。
-首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址然后在github的对应repo的设置中添加协作者，把他们的用户名添加到list中，这样他们就和你一样具有push权">
+首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git使用笔记（一）">
 <meta property="og:url" content="http://yoursite.com/2015/09/06/git-e4-bd-bf-e7-94-a8-e7-ac-94-e8-ae-b0/index.html">
 <meta property="og:site_name" content="WangDiYi' Blog">
 <meta property="og:description" content="实验室项目最近进入代码实现阶段，几个人看同一份代码，修改后的代码通过qq传来传去太容易乱，所以果断启用Git。写这篇日志记录一些基本操作备忘。
-首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址然后在github的对应repo的设置中添加协作者，把他们的用户名添加到list中，这样他们就和你一样具有push权">
-<meta property="og:updated_time" content="2015-09-08T03:10:37.000Z">
+首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址">
+<meta property="og:updated_time" content="2016-07-10T08:09:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用笔记（一）">
 <meta name="twitter:description" content="实验室项目最近进入代码实现阶段，几个人看同一份代码，修改后的代码通过qq传来传去太容易乱，所以果断启用Git。写这篇日志记录一些基本操作备忘。
-首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址然后在github的对应repo的设置中添加协作者，把他们的用户名添加到list中，这样他们就和你一样具有push权">
+首先就是，把远程的repo克隆到本地git clone &amp;quot;address&amp;quot;//address就是repo的https地址">
 
 
 
@@ -314,7 +314,7 @@
 
       
         <p>实验室项目最近进入代码实现阶段，几个人看同一份代码，修改后的代码通过qq传来传去太容易乱，所以果断启用Git。写这篇日志记录一些基本操作备忘。</p>
-<p>首先就是，把远程的repo克隆到本地<br><code>git clone &quot;address&quot;//address就是repo的https地址</code><br>然后在github的对应repo的设置中添加协作者，把他们的用户名添加到list中，这样他们就和你一样具有push权限啦～<br>接下来就是一些基本的操作：<br>每次添加了文件或者有修改之后，首先要将修改添加到缓冲区：<br><code>git add &quot;change&quot;//change 就是你修改的文件名</code><br><a id="more"></a><br>然后：<br><code>git commit -m &quot;commit&quot;//commit是你对本次修改的说明</code><br>最后：<br><code>git push origin master//因为我的项目没有其他branch所以直接push也可以</code></p>
+<p>首先就是，把远程的repo克隆到本地<br><code>git clone &quot;address&quot;//address就是repo的https地址</code><br><a id="more"></a><br>然后在github的对应repo的设置中添加协作者，把他们的用户名添加到list中，这样他们就和你一样具有push权限啦～<br>接下来就是一些基本的操作：<br>每次添加了文件或者有修改之后，首先要将修改添加到缓冲区：<br><code>git add &quot;change&quot;//change 就是你修改的文件名</code><br><!--more--><br>然后：<br><code>git commit -m &quot;commit&quot;//commit是你对本次修改的说明</code><br>最后：<br><code>git push origin master//因为我的项目没有其他branch所以直接push也可以</code></p>
 <p>另外可以用：<br><code>git status//查看当前缓冲区的修改情况，选择进一步commit或者取消</code></p>
 <p>删除文件的话，先在本地删除，然后：<br><code>git rm &quot;name&quot;//name就是你要删除的文件名</code><br>接下来还是commit然后push就好啦～～～</p>
 <p>今天学会的功能基本上已经能胜任最近的工作需要了。剩下的功能下周考完托福进一步开发，我在考虑创建一个本地的git版本库，然而并没有用。。。</p>
