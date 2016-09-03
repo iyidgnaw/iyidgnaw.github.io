@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,深度学习," />
+  <meta name="keywords" content="Days in America," />
 
 
 
@@ -84,24 +84,16 @@
 
 
 
-<meta name="description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
+<meta name="description" content="第七天今天上午去办信用卡，然而因为转过来的钱还没完全到账导致我的账户余额太低而没有办成，最无奈的是一次deny就得一个月之后才能再办理信用卡了。中午又在岳哥家蹭了个饭，见到了一个听岳哥说了几次的妹子，据说会下围棋，然而见面发现长得还可以，于是我果断的决定还是不要约棋了，这么漂亮的妹子还是不要接触了。哎呀我真是一个遵纪守法的好公民，有了女朋友就把其他妹子留给单身的汉子们吧（答应了灰灰灰同志的事情一定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Recurrent Neural Network (RNN) 学习笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2015/08/31/recurrent-neural-network-rnn-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-ef-bc-88-e4-b8-80-ef-bc-89/index.html">
+<meta property="og:title" content="Day 7">
+<meta property="og:url" content="http://yoursite.com/2016/09/02/Day-7/index.html">
 <meta property="og:site_name" content="WangDiYi' Blog">
-<meta property="og:description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
-<meta property="og:image" content="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png">
-<meta property="og:updated_time" content="2016-07-10T08:09:09.000Z">
+<meta property="og:description" content="第七天今天上午去办信用卡，然而因为转过来的钱还没完全到账导致我的账户余额太低而没有办成，最无奈的是一次deny就得一个月之后才能再办理信用卡了。中午又在岳哥家蹭了个饭，见到了一个听岳哥说了几次的妹子，据说会下围棋，然而见面发现长得还可以，于是我果断的决定还是不要约棋了，这么漂亮的妹子还是不要接触了。哎呀我真是一个遵纪守法的好公民，有了女朋友就把其他妹子留给单身的汉子们吧（答应了灰灰灰同志的事情一定">
+<meta property="og:updated_time" content="2016-09-03T02:15:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Recurrent Neural Network (RNN) 学习笔记（一）">
-<meta name="twitter:description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
-<meta name="twitter:image" content="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png">
+<meta name="twitter:title" content="Day 7">
+<meta name="twitter:description" content="第七天今天上午去办信用卡，然而因为转过来的钱还没完全到账导致我的账户余额太低而没有办成，最无奈的是一次deny就得一个月之后才能再办理信用卡了。中午又在岳哥家蹭了个饭，见到了一个听岳哥说了几次的妹子，据说会下围棋，然而见面发现长得还可以，于是我果断的决定还是不要约棋了，这么漂亮的妹子还是不要接触了。哎呀我真是一个遵纪守法的好公民，有了女朋友就把其他妹子留给单身的汉子们吧（答应了灰灰灰同志的事情一定">
 
 
 
@@ -119,7 +111,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
   };
 </script>
 
-  <title> Recurrent Neural Network (RNN) 学习笔记（一） | WangDiYi' Blog </title>
+  <title> Day 7 | WangDiYi' Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +251,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
             
             
               
-                Recurrent Neural Network (RNN) 学习笔记（一）
+                Day 7
               
             
           </h1>
@@ -271,30 +263,11 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-31T11:17:35-04:00" content="2015-08-31">
-              2015-08-31
+            <time itemprop="dateCreated" datetime="2016-09-02T22:06:26-04:00" content="2016-09-02">
+              2016-09-02
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学术/" itemprop="url" rel="index">
-                    <span itemprop="name">学术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -318,25 +291,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
       
 
       
-        <p>参考文献：</p>
-<p>Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012</p>
-<p>最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。<br><a id="more"></a><br>今天这篇博士论文的过程中，我一直感觉非常迷糊的地方就是RNN整个过程中各个向量或矩阵的维数。</p>
-<p><a href="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56.png" target="_blank" rel="external"><img src="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png" alt="屏幕快照 2015-08-31 上午11.00.56"></a></p>
-<p>上图就是RNN的示意图，根据每次的输入w(t)以及历史序列结果s(t-1)算出当前s(t),再由此算出y(t),学习方法采用的就是梯度下降的方法，论文中并没有具体展开成矩阵和向量的表示形式。但是我觉得这里还是需要具体说一下的（对于我这种小白来说）。</p>
-<p>w(t)的生成方式就是1 of V，也就是维数等于整个词典的维数，在所代表的词的那一维值为1其他均为0。因此w(t)实际上是一个V维的向量（V是词典长度）。那么根据文中公式，U矩阵应该是一个V*J维的矩阵。SO！！问题来了，J怎么确定下来？后续的K（也就是y(t)的维数）是怎么确定下来的？</p>
-<p>这个问题有待解决。<br><!--more--><br>另外一个问题是：两种梯度下降算法的区别。第一种梯度下降算法，也就是论文作者的算法，是在每一轮中都计算出y(t)并已下一轮的输入作为结果计算误差并更新U，V，W三个矩阵，也就是说，在s(t)产生的同时,也会随之优化出U(t+1)，V(t+1)，W(t+1)作为下一轮的参数。另一种算法中，采用一组随机生成的U、V、W矩阵，在每一轮中不进行优化，一直计算到最后的结果，也就是最后一轮的y(t).然后再逆向更新。</p>
-<p>毫无疑问，这两种算法产生的Y（t）是不同的，更新的结果也会是不同的。那么这两种方法到底哪一个更好？各自的理论依据是什么？</p>
-<p>今天下午争取解决这两个问题，晚上更新。</p>
-<p>&nbsp;</p>
-<hr>
-<p>20:29 更新</p>
-<p>对于第二个问题，作者在后续的论文中进行了说明。他提出，如果采用第一种方法，代码的复杂度太高，因此提出了一个Practice advice也就是第二种方法，即持续unfold若干个周期然后再向后进行参数优化。在阅读代码之后，第二个问题其实也迎刃而解了，在代码中，作者明确指定了Hidden Layer的维数为100.这其实才是整个RNN算法的程序中需要人为去优化的部分，U、V、W三个矩阵的更新其实是由程序完成的，并不需要人工调参。</p>
-<p>今天下午解决的另一个问题是梯度法更新参数的具体过程。我发现其实现在的迷惑点主要就是集中在向量空间展开时的具体对应问题上。因此我花了一点时间将整个RNN的过程全部以多项式的方式推导了一次。有些步骤看上去只是简单的向量相乘，但其实设计很多细节的问题。</p>
-<p>明天进行RNN代码的具体实现，数据集是电影数据，采用多条序列同时进行RNN的方式。具体细节，详见明天的学习笔记。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<hr>
-<p>&nbsp;</p>
+        <h4 id="第七天"><a href="#第七天" class="headerlink" title="第七天"></a>第七天</h4><p>今天上午去办信用卡，然而因为转过来的钱还没完全到账导致我的账户余额太低而没有办成，最无奈的是一次deny就得一个月之后才能再办理信用卡了。中午又在岳哥家蹭了个饭，见到了一个听岳哥说了几次的妹子，据说会下围棋，然而见面发现长得还可以，于是我果断的决定还是不要约棋了，这么漂亮的妹子还是不要接触了。哎呀我真是一个遵纪守法的好公民，有了女朋友就把其他妹子留给单身的汉子们吧（答应了灰灰灰同志的事情一定要做到）～嗷嗷嗷嗷嗷嗷嗷但是我特么好想下围棋尼玛好不容易逮到一个会下围棋的我好不甘心嗷嗷嗷嗷嗷嗷嗷。<br>下午陪学长去打了个球，遇到了一个巨牛逼的对位选手，我真是非常诧异有人可以三分这么准，后撤步也是没谁了重点还是三分真特么准啊卧槽这一下午一个小时少说进了特么30个我就日了狗了。今天有点脚疼，打板的手感也一般般主要是太长时间不打球感确实还是不太行，再恢复几次应该就可以了。<br>晚上又特么吃多了。or2肚子又感觉撑撑的然而我现在已经好困了我决定写完今天的日记就去睡觉。明天有球队的队友从纽约来波士顿找我玩然而下午要帮同租的另一个同学搬家，所以只能晚饭再去找他们了。<br>今天完全没有学习，昨天听直系学长说PDP已经把人难成狗了但是很有用，我决定收起鄙视的心态好好学一下这个课，但愿能够一切顺利。<br>保持心情愉快，晚安Boston。</p>
 
       
     </div>
@@ -358,9 +313,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
-          
-            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+            <a href="/tags/Days-in-America/" rel="tag">#Days in America</a>
           
         </div>
       
@@ -369,17 +322,13 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/07/04/2015-e4-b8-8a-e5-8d-8a-e5-b9-b4/" rel="next" title="2015上半年">
-                <i class="fa fa-chevron-left"></i> 2015上半年
+              <a href="/2016/08/31/Day-5/" rel="next" title="Day 5">
+                <i class="fa fa-chevron-left"></i> Day 5
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/09/06/git-e4-bd-bf-e7-94-a8-e7-ac-94-e8-ae-b0/" rel="prev" title="Git使用笔记（一）">
-                Git使用笔记（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -549,7 +498,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第七天"><span class="nav-number">1.</span> <span class="nav-text">第七天</span></a></li></ol></div>
             
           </div>
         </section>

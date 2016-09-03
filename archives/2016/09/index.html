@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,深度学习," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,24 +84,15 @@
 
 
 
-<meta name="description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Recurrent Neural Network (RNN) 学习笔记（一）">
-<meta property="og:url" content="http://yoursite.com/2015/08/31/recurrent-neural-network-rnn-e5-ad-a6-e4-b9-a0-e7-ac-94-e8-ae-b0-ef-bc-88-e4-b8-80-ef-bc-89/index.html">
+<meta name="description" content="Born in 1994. Study in NEU.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WangDiYi' Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2016/09/index.html">
 <meta property="og:site_name" content="WangDiYi' Blog">
-<meta property="og:description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
-<meta property="og:image" content="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png">
-<meta property="og:updated_time" content="2016-07-10T08:09:09.000Z">
+<meta property="og:description" content="Born in 1994. Study in NEU.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Recurrent Neural Network (RNN) 学习笔记（一）">
-<meta name="twitter:description" content="参考文献：
-Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012
-最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。">
-<meta name="twitter:image" content="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png">
+<meta name="twitter:title" content="WangDiYi' Blog">
+<meta name="twitter:description" content="Born in 1994. Study in NEU.">
 
 
 
@@ -119,7 +110,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
   };
 </script>
 
-  <title> Recurrent Neural Network (RNN) 学习笔记（一） | WangDiYi' Blog </title>
+  <title> 归档 | WangDiYi' Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +131,7 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container one-collumn sidebar-position-right  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -238,164 +229,65 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+       
+      
+      OK! 目前共计 31 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Recurrent Neural Network (RNN) 学习笔记（一）
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-31T11:17:35-04:00" content="2015-08-31">
-              2015-08-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学术/" itemprop="url" rel="index">
-                    <span itemprop="name">学术</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <p>参考文献：</p>
-<p>Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı prace, Brno, FIT VUT v Brne, 2012</p>
-<p>最近接触到了一些Deep Learning的算法，因为没有系统学习过这方面的知识，所以看论文和代码都非常吃力。所以我决定要慢下来，把细节的东西搞懂再继续进行。<br><a id="more"></a><br>今天这篇博士论文的过程中，我一直感觉非常迷糊的地方就是RNN整个过程中各个向量或矩阵的维数。</p>
-<p><a href="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56.png" target="_blank" rel="external"><img src="http://blog.imdiyi.com/wp-content/uploads/2015/08/屏幕快照-2015-08-31-上午11.00.56-300x188.png" alt="屏幕快照 2015-08-31 上午11.00.56"></a></p>
-<p>上图就是RNN的示意图，根据每次的输入w(t)以及历史序列结果s(t-1)算出当前s(t),再由此算出y(t),学习方法采用的就是梯度下降的方法，论文中并没有具体展开成矩阵和向量的表示形式。但是我觉得这里还是需要具体说一下的（对于我这种小白来说）。</p>
-<p>w(t)的生成方式就是1 of V，也就是维数等于整个词典的维数，在所代表的词的那一维值为1其他均为0。因此w(t)实际上是一个V维的向量（V是词典长度）。那么根据文中公式，U矩阵应该是一个V*J维的矩阵。SO！！问题来了，J怎么确定下来？后续的K（也就是y(t)的维数）是怎么确定下来的？</p>
-<p>这个问题有待解决。<br><!--more--><br>另外一个问题是：两种梯度下降算法的区别。第一种梯度下降算法，也就是论文作者的算法，是在每一轮中都计算出y(t)并已下一轮的输入作为结果计算误差并更新U，V，W三个矩阵，也就是说，在s(t)产生的同时,也会随之优化出U(t+1)，V(t+1)，W(t+1)作为下一轮的参数。另一种算法中，采用一组随机生成的U、V、W矩阵，在每一轮中不进行优化，一直计算到最后的结果，也就是最后一轮的y(t).然后再逆向更新。</p>
-<p>毫无疑问，这两种算法产生的Y（t）是不同的，更新的结果也会是不同的。那么这两种方法到底哪一个更好？各自的理论依据是什么？</p>
-<p>今天下午争取解决这两个问题，晚上更新。</p>
-<p>&nbsp;</p>
-<hr>
-<p>20:29 更新</p>
-<p>对于第二个问题，作者在后续的论文中进行了说明。他提出，如果采用第一种方法，代码的复杂度太高，因此提出了一个Practice advice也就是第二种方法，即持续unfold若干个周期然后再向后进行参数优化。在阅读代码之后，第二个问题其实也迎刃而解了，在代码中，作者明确指定了Hidden Layer的维数为100.这其实才是整个RNN算法的程序中需要人为去优化的部分，U、V、W三个矩阵的更新其实是由程序完成的，并不需要人工调参。</p>
-<p>今天下午解决的另一个问题是梯度法更新参数的具体过程。我发现其实现在的迷惑点主要就是集中在向量空间展开时的具体对应问题上。因此我花了一点时间将整个RNN的过程全部以多项式的方式推导了一次。有些步骤看上去只是简单的向量相乘，但其实设计很多细节的问题。</p>
-<p>明天进行RNN代码的具体实现，数据集是电影数据，采用多条序列同时进行RNN的方式。具体细节，详见明天的学习笔记。</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<hr>
-<p>&nbsp;</p>
-
-      
-    </div>
-
-    <div>
       
         
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
-          
-            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/04/2015-e4-b8-8a-e5-8d-8a-e5-b9-b4/" rel="next" title="2015上半年">
-                <i class="fa fa-chevron-left"></i> 2015上半年
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/09/06/git-e4-bd-bf-e7-94-a8-e7-ac-94-e8-ae-b0/" rel="prev" title="Git使用笔记（一）">
-                Git使用笔记（一） <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/09/02/Day-7/" itemprop="url">
+              
+                <span itemprop="name">Day 7</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-09-02T22:06:26-04:00"
+              content="2016-09-02" >
+          09-02
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -403,10 +295,6 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -426,17 +314,8 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -543,17 +422,6 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
-      
 
     </div>
   </aside>
@@ -649,9 +517,11 @@ Tomas Mikolov: Statistical Language Models Based on Neural Networks, disertacnı
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
