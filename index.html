@@ -253,8 +253,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/31/2016年终总结/" itemprop="url">
-                  2016年终总结
+                <a class="post-title-link" href="/2017/01/14/Linked-List/" itemprop="url">
+                  Linked List
                 </a>
               
             
@@ -267,30 +267,11 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-31T01:03:26-05:00" content="2016-12-31">
-              2016-12-31
+            <time itemprop="dateCreated" datetime="2017-01-14T00:17:35-05:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/生活/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
@@ -315,12 +296,491 @@
 
       
         
-          <blockquote>
-<p>这一年的悲伤与忙碌都太过疯狂，付出与决定又似乎太过草率</p>
-</blockquote>
-<p>2016年初，我在2015年的总结里面写下了这句话。现在看来似乎我的每一年都完美地应验着这句话的总结，大概这就是我的性格带给我的人生：总觉得有很多事情值得匆匆忙忙，总觉得有很多人值得感伤，总觉得很多付出是理所应当，总是日复一日地做着一个个再也不能回头的决定。
+          
+            <ul>
+<li><p>In memory, an array is continuous while the linked list may not.</p>
+</li>
+<li><p>Primitive Type is the type you already known4</p>
+</li>
+<li><p>the length in the memory. Thus , String and ArrayList in Java are not primitive type.</p>
+</li>
+<li><p>String a+”d” is O(N),<strong> StringBuilder sb.append(“d”) is O(1).</strong> The main reason is add function in String is actually find a new place of memory of length of a+ “d” and then copy the origin content in a and then copy the value of d. </p>
+</li>
+<li><p>Useful algorithms about LinkedList:</p>
+</li>
+<li><ul>
+<li><p>Reverse</p>
+</li>
+<li><p>Delete</p>
+</li>
+<li><p>Traverse.</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>Difference between LinkedList and ArrayList, The object in ArrayList can be anything while the element in LinkedList should be Node of anything. </p>
+</li>
+<li><p><strong>what’s the difference between using tail pointer and without it???</strong></p>
+<p>Answer:</p>
+</li>
+<li><p>If you are only given one node in the linkedlist, and you are asked to delete that node, the only way is to:</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/Complexity/" itemprop="url">
+                  Complexity
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T00:17:06-05:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h1><h2 id="Big-o-Notation-Definition"><a href="#Big-o-Notation-Definition" class="headerlink" title="Big-o Notation Definition"></a>Big-o Notation Definition</h2><p>Let n be the size of program’s input and T(n) be a function.</p>
+<ul>
+<li>Formal:<br>O(f(n)) is the set of all functions T(n) that satisfy:<br>There exist positive constants C and N such that for all n &gt;= N, T(n) &lt;= Cf(n)<br>the highlighted code from specific programming language.</li>
+<li>Big-o notation doesn’t care about constants factors.</li>
+<li>Big-o is Upper bound only.</li>
+<li>Suppose we have a more complex instance: n^3 + n^2 +n,<br>n^3 will be the dominant part of the whole algorithm. Big-o notation is usually used to indicate the dominating (fastest growing )term.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Big-o</th>
+<th>Common Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O(1)</td>
+<td>constant</td>
+</tr>
+<tr>
+<td>O(log n)</td>
+<td>logorithmic</td>
+</tr>
+<tr>
+<td>O(n^0.5)</td>
+<td>root-n</td>
+</tr>
+<tr>
+<td>O(n)</td>
+<td>linear</td>
+</tr>
+<tr>
+<td>O(nlog n)</td>
+<td></td>
+</tr>
+<tr>
+<td>O(n^2)</td>
+<td>quadratic</td>
+</tr>
+<tr>
+<td>O(n^3)</td>
+<td>cubic</td>
+</tr>
+<tr>
+<td>O(2^n)</td>
+<td>exponential</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/String/" itemprop="url">
+                  String
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T00:16:27-05:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>normal methods:</li>
+<li>length()</li>
+</ul>
+<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><ul>
+<li>useful methods:</li>
+</ul>
+<ul>
+<li>setCharAt(k, c)</li>
+<li>insert(k,s): Insert a copy of string s starting at index k of the sequence, shifting existing characters further back to make room.</li>
+<li>append(s)</li>
+<li>reverse()</li>
+<li>toString()</li>
+</ul>
+<ul>
+<li>The reason we implement StringBuilder class in our program is that the time complexity of append something is O(1) instead of O(n) using append(s) to the String directly. Thus, it’s convenient to modify string in this mode and convert back to String after changing.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/Two-pointer/" itemprop="url">
+                  Two-pointer
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T00:16:01-05:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Two-pointer"><a href="#Two-pointer" class="headerlink" title="Two-pointer"></a>Two-pointer</h2><ul>
+<li><p>set two pointer starting at the beginning , move one of them faster than another:</p>
+<ul>
+<li>when the faster one reach the end, the slower one will be at the middle.(234)</li>
+<li>if there exist loop, the faster one will eventually catch the slower one.(141)</li>
+</ul>
+</li>
+<li><p>set two pointer starting at both end, separating the whole array into two part</p>
+</li>
+<li><p>set the second pointer to be a boundary of some limitation.</p>
+<p>​</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/Python/" itemprop="url">
+                  Python
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T00:15:25-05:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h4 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h4><ul>
+<li><p>the default parameter can be not according to the origin order only when you use the “key-value “ pair the state your value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enroll</span><span class="params">(name,gender,age=<span class="number">6</span>,city=<span class="string">"beijing"</span>)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;enroll(<span class="string">"wangdiyi"</span>,<span class="string">"male"</span>)</span><br><span class="line">&gt;&gt;&gt;enroll(<span class="string">"wangdiyi"</span>,<span class="string">"male"</span>,<span class="number">22</span>)</span><br><span class="line">&gt;&gt;&gt;enroll(<span class="string">"wangdiyi"</span>,<span class="string">"male"</span>,city = <span class="string">"boston"</span>)</span><br></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/31/2016年终总结/#more" rel="contents">
+            <a class="btn" href="/2017/01/14/Python/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -371,8 +831,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/16/Day-21/" itemprop="url">
-                  Day 21
+                <a class="post-title-link" href="/2017/01/14/Java/" itemprop="url">
+                  Java
                 </a>
               
             
@@ -385,8 +845,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-16T23:08:28-04:00" content="2016-09-16">
-              2016-09-16
+            <time itemprop="dateCreated" datetime="2017-01-14T00:14:55-05:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -415,7 +875,62 @@
       
         
           
-            <p>今天心情极差，什么也不想写。</p>
+            <ul>
+<li>You can state your array at beginning, and initialize it after that.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] my_array;</span><br><span class="line">my_array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>You can also state and initiate your array at the same line:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] my_array = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line"><span class="comment">/**</span><br><span class="line">You can also initiate your array with specific value.</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">int</span> [] my_array = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>That is, if the element type is numeric, all cells of the array are initialized to zero, if the element type is boolean, all cells are false, and if the element type is a reference type (such as with an array of String instances), all cells are initialized to null.</p>
+</li>
+<li><p>Increment in Java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">int</span> j = i++; <span class="comment">//j become 8 and then i become 9</span></span><br><span class="line"><span class="keyword">int</span> k = ++i; <span class="comment">//i become 10 and then k become 10;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Type conversion:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> a = <span class="number">3.99</span>;</span><br><span class="line"><span class="keyword">int</span> b = (<span class="keyword">int</span>) a; <span class="comment">// a become 3 and b become 3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use instanceof to judge the type of data, but the type is boxed type</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Number b = <span class="keyword">new</span> Integer(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">if</span> (b <span class="keyword">instanceof</span> Integer)&#123;</span><br><span class="line">  System.out.println(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h1><ul>
+<li><p>Object: every thing is object. Abstract things into object allow us to maintain some useful features of such thing and build a boundary of inside and outside the object.</p>
+</li>
+<li><p>To define a new class:</p>
+<ul>
+<li><p>you need to clarify some variables in it. </p>
+</li>
+<li><p>don’t forget the return type of function when define it</p>
+</li>
+<li><p>don’t write any type of return in your own constructor.</p>
+</li>
+<li><p>don’t mess up with public and private.</p>
+</li>
+<li><p>if you need to throw some exception, you need to clarify such exception in your statement like following:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">at</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">throws</span> IllegalArgumentException</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>if you want to implement a build in method of existing class, you need to include its name:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line">...</span><br><span class="line">  <span class="keyword">int</span>[] A = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;;</span><br><span class="line">  Arrays.copyOfRange(A,<span class="number">1</span>,<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p><strong>Generic</strong></p>
+<ul>
+<li><p>Elmination of casts:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">List list = <span class="keyword">new</span> ArrayList();</span><br><span class="line">list.add(<span class="string">"hello"</span>);</span><br><span class="line">String s = (String) list.get(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//you have to cast here, because now the element in list is &lt;Object&gt; not &lt;String&gt;</span></span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt; ();</span><br><span class="line">list.add (<span class="string">"hello"</span>);</span><br><span class="line">String s = list.get(<span class="number">0</span>);</span><br><span class="line"><span class="comment">//You don't have to use cast here because you have use the generic declaring the type of the element in the list is &lt;Stirng&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>you can not use generic type to initiate an array.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E[] arr = <span class="keyword">new</span> E[<span class="number">5</span>];<span class="comment">//Wrong!!!</span></span><br></pre></td></tr></table></figure>
+<p>specific information can be find in <a href="http://stackoverflow.com/questions/7131652/generic-array-creation-error" target="_blank" rel="external">http://stackoverflow.com/questions/7131652/generic-array-creation-error</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<p> ​</p>
 
           
         
@@ -465,8 +980,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/15/Day-20/" itemprop="url">
-                  Day 20
+                <a class="post-title-link" href="/2017/01/14/Hash/" itemprop="url">
+                  Hash
                 </a>
               
             
@@ -479,8 +994,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-15T23:57:02-04:00" content="2016-09-15">
-              2016-09-15
+            <time itemprop="dateCreated" datetime="2017-01-14T00:14:16-05:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -508,9 +1023,169 @@
 
       
         
-          <p>今天是来美国的第二十天，其实就在我完成这篇日记的时间里已经到了21天，今天上午的效率依旧不高，看了一会儿书然后就去上COOP课了，然后下课之后去吃东西，wholefood的盒饭竟然所有东西一起称重全都一样的价钱，
+          
+            <ul>
+<li><p>Every key has a hashcode, for the simplest version of hash table, each hashcode occupies a bracket. The value of that key is stored in such bracket.</p>
+<p>For example, for each word, the word itself is the key and the definition of that word is the value storing in the bracket.</p>
+<p>But such hash table has one problem that we may not have enough memory for such a huge hash table which map each word into a bracket.</p>
+</li>
+<li><p>In order to solve this problem, we implement some method to compress the hashcode, for example:</p>
+<p>h(hashcode) = hashcode mod N</p>
+<p>where N is the actual capacity of our hash table. However, in this instance, we may suffer some other problem:</p>
+<p>h(hashcode1) = h(hashcode2)</p>
+<p>This is so called <strong>“COLLISION”</strong></p>
+</li>
+<li><p>Insert ()</p>
+<ul>
+<li><p>compute the key’s hash code</p>
+</li>
+<li><p>compress it to determine bucket</p>
+</li>
+<li><p>insert the entry into buckets chain.</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>find()</p>
+<ul>
+<li><p>hash the key</p>
+</li>
+<li><p>find the compressed index and find the bucket</p>
+</li>
+<li><p>find the key in the Linked list storing in that bucket.</p>
+</li>
+<li><p>if you find you key before reach the tail of the linked list, you return the value. Otherwise you return null</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>remove()</p>
+<ul>
+<li><p>hash the key</p>
+</li>
+<li><p>search the chain</p>
+</li>
+<li><p>remove from the linked list if found</p>
+</li>
+<li><p>return the Entry or null</p>
+<p>​</p>
+</li>
+</ul>
+</li>
+<li><p>if your key have multiple value:</p>
+<ul>
+<li>G&amp;T: insert both; find() will return arbitrarily.</li>
+<li>Replace old value with new one. find() will only return the new one.</li>
+</ul>
+</li>
+<li><p><strong>Don’t change your object after inserted into the hash table, </strong></p>
+</li>
+<li><p>We implement <strong>random</strong> not for random choosing the bucket for a particular key. But for the first time of assigning a bucket for a key. Which means, after the first assignment, the key will always be mapped into a certain bucket.</p>
+</li>
+<li><p>Compression functions:</p>
+<ul>
+<li>​</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/DP/" itemprop="url">
+                  DP
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-14T00:13:33-05:00" content="2017-01-14">
+              2017-01-14
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h5 id="Fibonacci"><a href="#Fibonacci" class="headerlink" title="Fibonacci"></a>Fibonacci</h5><ul>
+<li><p>Recursion:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> n&lt;=<span class="number">2</span>:</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    f = fib(n<span class="number">-1</span>)+fib(n<span class="number">-2</span>)</span><br><span class="line">    <span class="keyword">return</span> f</span><br></pre></td></tr></table></figure>
+<p>时间复杂度 O(2^N), 因为:<br>T(n) = T(n-1)+T(n-2)+o(1)<br>下限为:<br>T(n) &gt;= 2 * T(n-2)<br>Thus, the time complexity is exponential.</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/15/Day-20/#more" rel="contents">
+            <a class="btn" href="/2017/01/14/DP/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -561,8 +1236,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/14/Day-19/" itemprop="url">
-                  Day 19
+                <a class="post-title-link" href="/2017/01/14/Array/" itemprop="url">
+                  Array
                 </a>
               
             
@@ -575,8 +1250,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-14T22:43:31-04:00" content="2016-09-14">
-              2016-09-14
+            <time itemprop="dateCreated" datetime="2017-01-14T00:12:43-05:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -605,7 +1280,116 @@
       
         
           
-            <p>第十九天，今天真是有点累，从早上开始一直看AI到放学回家，回家继续断断续续看AI看到现在，明天上课钱争取看到老师要求的部分吧。<br>今天时间比较紧，就先不总结了。今天没健身，一会儿睡前得做一组腹肌再睡觉。<br>就酱。</p>
+            <ul>
+<li><strong>Contiguous area</strong> of memory consisting of <strong>equal-size</strong> elements indexed by Contiguous integers.</li>
+<li><strong>CONSTANT</strong> time access to read and write.</li>
+</ul>
+<h3 id="Multi-Dimensional-Arrays"><a href="#Multi-Dimensional-Arrays" class="headerlink" title="Multi Dimensional Arrays"></a>Multi Dimensional Arrays</h3><ul>
+<li>The address of an element:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>(0,0)</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1,0)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td>(2,3)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>address (2,3) = address (0,0) + element_size * ((2-0) * 7 + (3-0))</p>
+<ul>
+<li>row major as shown in the following table.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>(0,0)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(0,2)</td>
+</tr>
+<tr>
+<td>(1,1)</td>
+</tr>
+<tr>
+<td>(1,2)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Time-for-common-operations"><a href="#Time-for-common-operations" class="headerlink" title="Time for common operations"></a>Time for common operations</h3><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">Add</th>
+<th style="text-align:right">Remove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beginning</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:right">O(n)</td>
+</tr>
+<tr>
+<td>End</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:right">O(1)</td>
+</tr>
+<tr>
+<td>Middle</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:right">O(n)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Because for the beginning and middle element, you have to re-place the whole array to make space for the new element.</li>
+<li><strong>constants time access but not constants time change!</strong></li>
+</ul>
+<h3 id="Dynamic-Arrays"><a href="#Dynamic-Arrays" class="headerlink" title="Dynamic Arrays"></a>Dynamic Arrays</h3><ul>
+<li>Store a pointer to a dynamically allocated array, and replace it with a newly-allocated array as needed.</li>
+<li>In the definition of the abstract class of Dynamic Array<ul>
+<li>Get(i): if i<0 or="" i="">=size, return error.</0></li>
+<li>Set(i, val): same</li>
+<li>PushBack(val): add val to the end. if size=capacity, then first twice the capacity and then use a for-loop to copy elements from older array to the new one. Finally let the pointer turn to point at new array.</li>
+<li>Remove(i)</li>
+<li>Size()</li>
+</ul>
+</li>
+<li><strong>Dynamic Array Resizing: </strong>We have a pointer pointing our array, we have size indicating the current usage of the array and capacity indicating the available size of the array. When the size is equal to the capacity, we just make a bigger array and copy elements from the past and then let our pointer to point at the new array.</li>
+</ul>
+<h3 id="Insertion-sort-of-array"><a href="#Insertion-sort-of-array" class="headerlink" title="Insertion-sort of array."></a>Insertion-sort of array.</h3><ul>
+<li>Use an outer loop to consider each element in turn, and an inner loop that moves newly considered element to its proper location relative to the sorted subarray.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertionSort</span><span class="params">(<span class="keyword">char</span>[] data)</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> n = data.length;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>; k&lt;n; k++)&#123;</span><br><span class="line">    <span class="keyword">char</span> cur =data[k];</span><br><span class="line">    <span class="keyword">int</span> j = k;</span><br><span class="line">    <span class="keyword">while</span> (j&gt;<span class="number">0</span>&amp;&amp;data[j-<span class="number">1</span>]&gt;cur)&#123;</span><br><span class="line">      data[j] = data[j-<span class="number">1</span>];</span><br><span class="line">      j--;</span><br><span class="line">    &#125;</span><br><span class="line">    data[j] = cur;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="java-util-Methods-for-Arrays"><a href="#java-util-Methods-for-Arrays" class="headerlink" title="java.util Methods for Arrays:"></a>java.util Methods for Arrays:</h3><ul>
+<li>​</li>
+</ul>
 
           
         
@@ -655,8 +1439,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/13/Day-18/" itemprop="url">
-                  Day 18
+                <a class="post-title-link" href="/2017/01/14/Summary-of-Leetcode/" itemprop="url">
+                  Summary of Leetcode
                 </a>
               
             
@@ -669,8 +1453,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-13T22:47:25-04:00" content="2016-09-13">
-              2016-09-13
+            <time itemprop="dateCreated" datetime="2017-01-14T00:10:37-05:00" content="2017-01-14">
+              2017-01-14
             </time>
           </span>
 
@@ -698,490 +1482,23 @@
 
       
         
-          <p>今天上了第一堂课PDP，如我所料的没有出现老师说话听不懂的情况但是印度同学的问题还有有一部分听不懂这个看来还是得想办法解决一下。以及课程并没有我想象的那么难，
+          <p>(use four # to declare the title of each problem.use two # to declare the tag)</p>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><h4 id="48-Rotate-Image"><a href="#48-Rotate-Image" class="headerlink" title="48. Rotate Image"></a>48. Rotate Image</h4><p>You are given an <em>n</em> x <em>n</em> 2D matrix representing an image.</p>
+<p>Rotate the image by 90 degrees (clockwise).</p>
+<p>Follow up:<br>Could you do this in-place?</p>
+<p>要用到两个重点知识，第一个是内建函数zip，从一个列表中依次抽取可iterate的元素，然后每次取出一个组成一个tuple，直到列表中的某一个iterate元素到尾则返回。返回的格式是和range一样的zip object，因此需要转化成list。</p>
+<p>另一个重点是，如何把matrix里面的每一行作为一个element放进zip，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*matrix)</span><br></pre></td></tr></table></figure>
+<p>使用*来将一个列表中的元素作为参数表放进函数，这个技巧非常重要</p>
+<h4 id="219-Contains-Duplicate"><a href="#219-Contains-Duplicate" class="headerlink" title="219. Contains Duplicate"></a>219. Contains Duplicate</h4><p>Given an array of integers and an integer <em>k</em>, find out whether there are two distinct indices <em>i</em> and <em>j</em> in the array such that <strong>nums[i] = nums[j]</strong>and the <strong>absolute</strong> difference between <em>i</em> and <em>j</em> is at most <em>k</em>.</p>
+<p>使用hash table，将元素的位置作为value，如果元素不在字典中，那么就将该元素的当前位置作为value放入字典。</p>
+<p>当发现该值已经在字典中，那么比较保存的位置和当前的位置直接的距离，如果小于k那么返回true，如果大于k那么就更新该元素的value为当前的位置。</p>
+<h4 id="442-Find-All-Duplicates-in-an-Array"><a href="#442-Find-All-Duplicates-in-an-Array" class="headerlink" title="442. Find All Duplicates in an Array"></a>442. Find All Duplicates in an Array</h4><p>Given an array of integers, 1 ≤ a[i] ≤ <em>n</em> (<em>n</em> = size of array), some elements appear <strong>twice</strong> and others appear <strong>once</strong>.</p>
+<p>Find all the elements that appear <strong>twice</strong> in this array.</p>
+<p>Could you do it without extra space and in O(<em>n</em>) runtime?</p>
+<p>要求不使用extra space，因此就要在下标上下功夫，把出现过一次的元素的值作为下标，找到该下标的元素将其改为string，每次判断当前的元素作为下标的单元格中的元素的数据类型，如果已经变为了String，那么说明这个下标已经被改变过，说明元素作为下标出现过了，那么就是重复的元素。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/13/Day-18/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/12/Day-17/" itemprop="url">
-                  Day 17
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-12T22:34:28-04:00" content="2016-09-12">
-              2016-09-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>已经十点半了可是今天才看了一点点机器学习实战，就把截止到现在学到的东西稍微做一下总结：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.tile(inX, (dataSetSize,<span class="number">1</span>))</span><br></pre></td></tr></table></figure></p>
-<p>从numpy中我找到了这个<code>tile</code>的定义
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/12/Day-17/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/11/Day-16/" itemprop="url">
-                  Day 16
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-11T21:33:22-04:00" content="2016-09-11">
-              2016-09-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>首先检讨一下昨天忘了写日记了，昨天去买东西回来有点晚了然后做饭吃饭在收拾好了就九点多了，一直折腾新床垫到一点多钟。<br>今天是完全休闲的一天，中午和早饭都自己在家吃了西式的面包火腿，本来想做鸡胸肉但是没解冻。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/11/Day-16/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/09/Day-14/" itemprop="url">
-                  Day 14
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-09T23:32:29-04:00" content="2016-09-09">
-              2016-09-09
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天在学校自习了一波，对于AI的选课我仍然是心急如焚，一方面我的位置向前行进了三位，现在我排名第三，只要再有三个人退出这个课我就可以选上了，或者我前面两个排名的同学如果退出这个课的waitlist的话我也可以提前选上。但是另一方面我总觉得随着时间的推移退出这门课可能性会越来越小，因为如果真的不喜欢或者觉得跟不上的话肯定在第一天就退出这个课了没有必要还在课程里耗着。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/09/Day-14/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/08/Day-13/" itemprop="url">
-                  Day 13
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T22:16:23-04:00" content="2016-09-08">
-              2016-09-08
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天做题做嗨了连健身都没去，对racket真的是渐入佳境，基本摸清了这个语言的套路，明天开始好好看课程的其他内容。现在还不是膨胀的时候，现在仅仅是刚刚入了个门而已。对于晚上的AI课，我想说不管老师讲的怎么样，我是真的对这个很感兴趣啊，
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/08/Day-13/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/Day-12/" itemprop="url">
-                  Day 12
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T23:45:44-04:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天苹果召开了发布会，我也是闲的无聊就全程看了直播，我是真的觉得iphone7有点缺乏诚意
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/07/Day-12/#more" rel="contents">
+            <a class="btn" href="/2017/01/14/Summary-of-Leetcode/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1215,7 +1532,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1256,7 +1573,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">55</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1273,7 +1590,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1366,7 +1683,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
