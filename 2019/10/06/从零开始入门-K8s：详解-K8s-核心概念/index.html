@@ -2,126 +2,43 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  
-
-  
   <title>从零开始入门 K8s：详解 K8s 核心概念 | What Did I Just Read</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Here’s the link to the original post written by 李响:https://www.infoq.cn/article/KNMAVdo3jXs3qPKqTZBw  一、什么是 KubernetesKubernetes ，从官方网站上可以看到，它是一个工业级的容器编排平台。Kubernetes 这个单词是希腊语，它的中文翻译是“舵手”或者“飞行员”。在一些常">
-<meta name="keywords" content="k8s">
-<meta property="og:type" content="article">
-<meta property="og:title" content="从零开始入门 K8s：详解 K8s 核心概念">
-<meta property="og:url" content="http://iyidgnaw.github.io/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/index.html">
-<meta property="og:site_name" content="What Did I Just Read">
-<meta property="og:description" content="Here’s the link to the original post written by 李响:https://www.infoq.cn/article/KNMAVdo3jXs3qPKqTZBw  一、什么是 KubernetesKubernetes ，从官方网站上可以看到，它是一个工业级的容器编排平台。Kubernetes 这个单词是希腊语，它的中文翻译是“舵手”或者“飞行员”。在一些常">
-<meta property="og:locale" content="en">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/1f/a7/1f5c9e99df79ea86ca5062fef22e21a7.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/72/c8/72ef4e91e8aa94108ee7186d64ae0fc8.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/73/24/731d967b5dafa97e5506ec6205b98424.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/11/01/114253ad481b90ed1dfc93ec48b85901.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/a3/95/a33057f576155f405422b743ea052195.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/ed/26/ed28ccbbefddf9ade14ade35686ee026.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/d5/96/d552582add20217effce933e998d9196.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/e9/49/e95c765b7ac2b6802b165e03acd40849.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/5c/f8/5c9fe50067821e9e86a74cae4cbdd9f8.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/04/9b/047e4723316d6424b26341de5007329b.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/b2/9f/b246d174b3169a242ac5799bc962f69f.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/54/5b/542cf5c317c5e567ba63a720802ae85b.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/4e/e2/4ea8feaad09e871bbca804e7f61738e2.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/bb/4a/bbcd5a617d228099f69ddc987ca18f4a.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/a0/4d/a00719f494ae94a40be0be6012e5134d.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/23/2e/23921b341e482ad31ce28fc15269ad2e.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/01/b7/01cd07a0428ef67b59b7c3f2148c0cb7.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/2d/c3/2dd26bca726c4da50783aae6dac708c3.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/ee/10/ee9231dc699c66acdf027b22a8c60910.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/c7/be/c70051af3943ee82a431276d4f34ddbe.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/73/63/738dda818102d8ed7cb09d12eb994463.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/f2/be/f25617e424c4aba403aa1aa3f91e86be.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/d5/85/d58d4ee65b25f98446f3bcde73049f85.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/ac/b1/ace70147bd97113fe5c482be21e7ffb1.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/4b/02/4b8fae8b07b2aba92525c615cc001802.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/c9/3e/c9bdf4e0258acf079f9bd39d245e613e.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/cc/ab/cc59b919352560954c4a71023d7057ab.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/1e/f8/1e2b56d904f4866857f2b4f11f7d6ff8.png">
-<meta property="og:image" content="https://static001.infoq.cn/resource/image/fe/03/fee8ec4fbbd238c02d99c8cc10f47603.png">
-<meta property="og:updated_time" content="2019-10-06T22:08:47.062Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从零开始入门 K8s：详解 K8s 核心概念">
-<meta name="twitter:description" content="Here’s the link to the original post written by 李响:https://www.infoq.cn/article/KNMAVdo3jXs3qPKqTZBw  一、什么是 KubernetesKubernetes ，从官方网站上可以看到，它是一个工业级的容器编排平台。Kubernetes 这个单词是希腊语，它的中文翻译是“舵手”或者“飞行员”。在一些常">
-<meta name="twitter:image" content="https://static001.infoq.cn/resource/image/1f/a7/1f5c9e99df79ea86ca5062fef22e21a7.png">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
   
-    <link rel="alternate" href="/atom.xml" title="What Did I Just Read" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">What Did I Just Read</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">My answer to the information explosion era</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://iyidgnaw.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-从零开始入门-K8s：详解-K8s-核心概念" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/" class="article-date">
-  <time datetime="2019-10-06T22:06:25.000Z" itemprop="datePublished">2019-10-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <nav class="app-nav">
   
-    <h1 class="article-title" itemprop="name">
-      从零开始入门 K8s：详解 K8s 核心概念
-    </h1>
+    
+      <a href="/.">home</a>
+    
   
+    
+      <a href="/archives">archive</a>
+    
+  
+    
+      <a href="/about">about</a>
+    
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
+  <main class="post">
+  <article>
+  <h1 class="article-title">
+    <a href="/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/">从零开始入门 K8s：详解 K8s 核心概念</a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-date">October 06 2019</p>
+  </section>
+
+  <section class="article-entry">
+    <blockquote>
 <p>Here’s the link to the original post written by 李响:<br><a href="https://www.infoq.cn/article/KNMAVdo3jXs3qPKqTZBw" target="_blank" rel="noopener">https://www.infoq.cn/article/KNMAVdo3jXs3qPKqTZBw</a></p>
 </blockquote>
 <h2 id="一、什么是-Kubernetes"><a href="#一、什么是-Kubernetes" class="headerlink" title="一、什么是 Kubernetes"></a>一、什么是 Kubernetes</h2><p><a href="https://baike.baidu.com/item/kubernetes/22864162?fr=aladdin" target="_blank" rel="noopener">Kubernetes </a>，从官方网站上可以看到，它是一个工业级的容器编排平台。Kubernetes 这个单词是希腊语，它的中文翻译是“舵手”或者“飞行员”。在一些常见的资料中也会看到“ks”这个词，也就是“K8s”，它是通过将 8 个字母“ubernete ”替换为“8”而导致的一个缩写。</p>
@@ -277,123 +194,56 @@
 <li>Kubernetes 架构是一个比较典型的二层架构和 server-client 架构；</li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iyidgnaw.github.io/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/" data-id="ck1fjgc690003svqednfiugyy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/k8s/">k8s</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2019/10/06/JWT-JWS-and-JWE-for-Not-So-Dummies/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JWT, JWS and JWE for Not So Dummies</div>
-    </a>
-  
-</nav>
-
-  
+  </section>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+  <div class="sharing grid">
+  <section class="profile grid-item grid">
+    <img class="avatar" src="/" alt="avatar" />
+    <div class="grid-item">
+      <p class="title"> What Did I Just Read </p>
+      <p class="subtitle"> My answer to the information explosion era </p>
+    <div>
+  </section>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/systemd/">systemd</a></li></ul>
-    </div>
-  </div>
+  <section class="share-btns">
+    <!-- <p> share it if you like it~ </p> -->
+    <a
+  class="twitter-share-button"
+  data-size="large"
+  data-via="DrakeLeung"
+  href="https://twitter.com/intent/tweet?text=ockquote>
+<p>Here’s "
+>
+  Tweet
+</a>
 
+<script>
+  window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  js.async = true;
+  fjs.parentNode.insertBefore(js, fjs);
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a>
-    </div>
-  </div>
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
-    </div>
-  </div>
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 
+  </section>
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/">从零开始入门 K8s：详解 K8s 核心概念</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/06/JWT-JWS-and-JWE-for-Not-So-Dummies/">JWT, JWS and JWE for Not So Dummies</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/02/Rethinking-PID-1/">Rethinking PID 1</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
   
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Diyi Wang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</main>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
 </body>
 </html>

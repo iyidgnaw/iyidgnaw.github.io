@@ -2,96 +2,43 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
-  
-
-  
   <title>Rethinking PID 1 | What Did I Just Read</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Here’s the link to the original post written by Lennart Poettering:http://0pointer.net/blog/projects/systemd.html  If you are well connected or good at reading between the lines you might already kno">
-<meta name="keywords" content="linux,systemd">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Rethinking PID 1">
-<meta property="og:url" content="http://iyidgnaw.github.io/2019/10/02/Rethinking-PID-1/index.html">
-<meta property="og:site_name" content="What Did I Just Read">
-<meta property="og:description" content="Here’s the link to the original post written by Lennart Poettering:http://0pointer.net/blog/projects/systemd.html  If you are well connected or good at reading between the lines you might already kno">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-06T21:56:27.207Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rethinking PID 1">
-<meta name="twitter:description" content="Here’s the link to the original post written by Lennart Poettering:http://0pointer.net/blog/projects/systemd.html  If you are well connected or good at reading between the lines you might already kno">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
   
-    <link rel="alternate" href="/atom.xml" title="What Did I Just Read" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
 </head>
 </html>
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">What Did I Just Read</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">My answer to the information explosion era</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://iyidgnaw.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Rethinking-PID-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/10/02/Rethinking-PID-1/" class="article-date">
-  <time datetime="2019-10-03T03:04:09.000Z" itemprop="datePublished">2019-10-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <nav class="app-nav">
   
-    <h1 class="article-title" itemprop="name">
-      Rethinking PID 1
-    </h1>
+    
+      <a href="/.">home</a>
+    
   
+    
+      <a href="/archives">archive</a>
+    
+  
+    
+      <a href="/about">about</a>
+    
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
+  <main class="post">
+  <article>
+  <h1 class="article-title">
+    <a href="/2019/10/02/Rethinking-PID-1/">Rethinking PID 1</a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-date">October 02 2019</p>
+  </section>
+
+  <section class="article-entry">
+    <blockquote>
 <p>Here’s the link to the original post written by Lennart Poettering:<br><a href="http://0pointer.net/blog/projects/systemd.html" target="_blank" rel="noopener">http://0pointer.net/blog/projects/systemd.html</a></p>
 </blockquote>
 <p>If you are well connected or good at reading between the lines you might already know what this blog post is about. But even then you may find this story interesting. So grab a cup of coffee, sit down, and read what’s coming.</p>
@@ -169,127 +116,56 @@
 </ol>
 <p>All these units can have dependencies between each other (both positive and negative, i.e. ‘Requires’ and ‘Conflicts’): a device can have a dependency on a service, meaning that as soon as a device becomes available a certain service is started. Mounts get an implicit dependency on the device they are mounted from. Mounts also gets implicit dependencies to mounts that are their prefixes (i.e. a mount <code>/home/lennart</code> implicitly gets a dependency added to the mount for <code>/home</code>) and so on.</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://iyidgnaw.github.io/2019/10/02/Rethinking-PID-1/" data-id="ck1fjgc5y0000svqebeue98k4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systemd/">systemd</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/10/06/JWT-JWS-and-JWE-for-Not-So-Dummies/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JWT, JWS and JWE for Not So Dummies
-        
-      </div>
-    </a>
-  
-  
-</nav>
-
-  
+  </section>
 </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+  <div class="sharing grid">
+  <section class="profile grid-item grid">
+    <img class="avatar" src="/" alt="avatar" />
+    <div class="grid-item">
+      <p class="title"> What Did I Just Read </p>
+      <p class="subtitle"> My answer to the information explosion era </p>
+    <div>
+  </section>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Security/">Security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/systemd/">systemd</a></li></ul>
-    </div>
-  </div>
+  <section class="share-btns">
+    <!-- <p> share it if you like it~ </p> -->
+    <a
+  class="twitter-share-button"
+  data-size="large"
+  data-via="DrakeLeung"
+  href="https://twitter.com/intent/tweet?text=ockquote>
+<p>Here’s "
+>
+  Tweet
+</a>
 
+<script>
+  window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  js.async = true;
+  fjs.parentNode.insertBefore(js, fjs);
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Security/" style="font-size: 10px;">Security</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a>
-    </div>
-  </div>
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li></ul>
-    </div>
-  </div>
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 
+  </section>
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/10/06/从零开始入门-K8s：详解-K8s-核心概念/">从零开始入门 K8s：详解 K8s 核心概念</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/06/JWT-JWS-and-JWE-for-Not-So-Dummies/">JWT, JWS and JWE for Not So Dummies</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/02/Rethinking-PID-1/">Rethinking PID 1</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
   
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2019 Diyi Wang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</main>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
 </body>
 </html>
