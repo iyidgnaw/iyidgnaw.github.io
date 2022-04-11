@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>SLA-2 | What Did I Just Read</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
+  
+</head>
+</html>
+<body>
+  <nav class="app-nav">
+  
+    
+      <a href="/.">home</a>
+    
+  
+    
+      <a href="/archives">archive</a>
+    
+  
+    
+      <a href="/about">about</a>
+    
+  
+</nav>
+
+  <main class="post">
+  <article>
+  <h1 class="article-title">
+    <a href="/2022/04/10/SLA-2/">SLA-2</a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-date">April 10 2022</p>
+  </section>
+
+  <section class="article-entry">
+    <h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><p>今天看了KMP，没有精力看别的source code了</p>
+<h3 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h3><p><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="noopener">https://leetcode.com/problems/reverse-words-in-a-string/</a> 151. Reverse Words in a String</p>
+<p>Practice of using several typical String util methods:</p>
+<ul>
+<li>trim()</li>
+<li>spli()</li>
+<li>Join()</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        String[] arr = s.trim().split(<span class="string">" +"</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j = arr.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; j) &#123;</span><br><span class="line">            swap(i, j, arr);</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> String.join(<span class="string">" "</span>, arr);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, String[] arr)</span> </span>&#123;</span><br><span class="line">        String temp = arr[i];</span><br><span class="line">        arr[i] = arr[j];</span><br><span class="line">        arr[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">https://leetcode.com/problems/implement-strstr/</a> 28. Implement strStr()</p>
+<p><strong>KMP</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[needle.length()];</span><br><span class="line">        buildNext(next, needle);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; needle.charAt(j) != haystack.charAt(i)) j = next[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (needle.charAt(j) == haystack.charAt(i)) j++;</span><br><span class="line">            <span class="keyword">if</span> (j == needle.length()) <span class="keyword">return</span> i - needle.length() + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">buildNext</span><span class="params">(<span class="keyword">int</span>[] next, String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] pat = s.toCharArray();</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pat.length; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; pat[i] != pat[j]) j = next[j-<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (pat[i] == pat[j]) j++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>个人认为核心思想有两个：</p>
+<ul>
+<li><p>j，代表的是当前最长匹配前缀的长度，同时显而易见的是，这个长度也是当前前缀的下一个要匹配的目标位置。</p>
+</li>
+<li><p>另一个重点是【回退】或者我们可以说成是【退而求其次】， 也就是j = next[j-1]这个操作。为什么要这样回退？</p>
+</li>
+</ul>
+<pre><code>**首先我们定义什么是【KMP式回退】，就是当我们出现失配时，将j指针先回退到j之前可能出现的最长匹配前缀的下一个位置。**</code></pre><p>接下来我们先解决一个疑问：当我们回退的时候，为什么不能直接让j–呢？<br>     是因为我们比较j和i的时候，实际上基于了一个隐含条件：<br>     Pat[j-1] == pat[i-1]<br>Pat[j-2] == pat[i-2]….<br>     由此我们才能比较j和i，这样才有意义。<br>     而简单粗暴的用i去试图匹配j-1这个位置显然不再能满足以上的这一系列隐含条件了。</p>
+<pre><code>那么为什么要回退到next[j-1]呢？
+因为我们现在已经知道[j] != [i]了，因为KMP的本质就是为了让我们不要每次失配就回到原点，对么？
+
+因此我们就利用已经构建好的【0到i-1】的next来帮助我们回退。
+
+这就是很多文章中都提到的递归的思想。
+即：在构建next的过程中，当出现失配时，我们就利用已经构建好的部分来进行一个【KMP回退】而不是暴力解法中的回退。
+
+如果再具体来说，当构建过程中我们发现失配时，暴力解法是什么样的呢？
+暴力解法时，当j 和 i出现失配，我们直接比较0和i是否相等。也就是比较最靠前的一个前缀（仅包含第一个字符），和最靠后的一个后缀（仅包含i这个位置的字符）是否匹配。
+
+注意以上这个写法中，next[i]表示的是包含i这个位置的字符，也就是[0, i] 这个范围内的最长匹配前缀后缀长度。因此回退时，是将j回退为next[j-1]
+
+用一个例子更直观的说明在buildnext过程中这样做的优势
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3 4 5 6 7 8 9 10 11 12 13</span><br><span class="line">x x x x a x c d e x x  x  x  x</span><br><span class="line">0 1 2 3 0 1 0 0 0 1 2  3  4  ?</span><br><span class="line"></span><br><span class="line">我们求next[13]</span><br><span class="line">此时j = 4, i = 13</span><br><span class="line">我们比较[j] 和 [i]</span><br><span class="line">此时实际上存在一个隐含的前提：</span><br><span class="line">[0, 3] == [9, 12]</span><br><span class="line">就是说我们之所以可以去比较[j]和[i]是因为他们前面的j-1长度的字符串一定是相等的。</span><br><span class="line"></span><br><span class="line">此时失配，因此我们进行回退。回退的位置是next[j-1], 也就是next[3] = 3</span><br><span class="line">j = 3， 我们匹配[3] 和 [i]， 匹配成功，</span><br><span class="line">next[i] = 3 + 1 = 4.</span><br></pre></td></tr></table></figure>
+
+
+根据如上的例子，为什么KMP优于暴力解法呢？因为:
+[0, 3] == [9, 12]
+
+这是最重要的一个隐含条件。
+
+假设说当next[3] = k，也就是[0, 3]里面有长度为k的前后缀匹配，由于以上隐含条件，我们可以得到[9, 12]中一定也存在这样长度的前后缀匹配。
+
+并且[0, 3]中匹配的前缀，一定也等于[9, 12]中匹配的后缀。
+（在以上的例子中，[0, 3]匹配的前缀是xxx, [9, 12]中匹配的后缀也是xxx
+
+
+
+写出来的话，就是[0, k-1] == [12-(k-1), 12]
+
+仔细观察这个等式，这是什么呢？
+
+这就是我们接下来有必要去比较[k] 和 [i]的隐含条件。
+
+
+
+也就是说正因为有这个隐含条件的成立，我们比较[k] 和[i]才有意义。当k 和 i匹配成功时我们才达到了shortcut的效果。（如果没有这个隐含条件的话，[k] == [i] 没有任何意义，只能说明一个字符相等，不能说明前缀和后缀成功匹配了。）
+
+
+
+这也正是KMP相比于暴力解法的优势所在。
+
+
+
+此处我们再次试图一句话解答上文提到的问题： **j = next[j-1] 即 j = k这个操作。为什么要这样回退？ 是因为这样回退之后存在[0, k-1] == [12-(k-1), 12] 这个先决条件，致使我们有机会在[k] == [i]的情况下避免出现暴力解法中那样回退到0的过度回退。**</code></pre><h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p>以前准备面试的过程中，KMP我背了两次。。。</p>
+<p>第一次找实习的时候就背KMP，后来找全职又背KMP的next怎么生成。</p>
+<p>知道昨天我仍然没明白为什么KMP要这样设计，也说不清楚为什么要这样求next数据，更说不清楚为什么要这样回退。</p>
+<p>希望这一波学习中，可以稳扎稳打把每个知识点都吃透，形成自己的理解。</p>
+
+  </section>
+</article>
+
+
+  
+</main>
+
+</body>
+</html>

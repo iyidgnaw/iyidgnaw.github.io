@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <title>SLA-1 | What Did I Just Read</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/app.css">
+  <!-- <link rel='stylesheet' href='http://fonts.useso.com/css?family=Source+Code+Pro'> -->
+  
+</head>
+</html>
+<body>
+  <nav class="app-nav">
+  
+    
+      <a href="/.">home</a>
+    
+  
+    
+      <a href="/archives">archive</a>
+    
+  
+    
+      <a href="/about">about</a>
+    
+  
+</nav>
+
+  <main class="post">
+  <article>
+  <h1 class="article-title">
+    <a href="/2022/04/06/SLA-1/">SLA-1</a>
+  </h1>
+
+  <section class="article-meta">
+    <p class="article-date">April 05 2022</p>
+  </section>
+
+  <section class="article-entry">
+    <h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><p>java/lang/Integer.java</p>
+<ul>
+<li>valueOf method is caching Integer from -128 to 127 (IntegerCache)</li>
+<li>parseInt()</li>
+<li>toString(int i, int radix)</li>
+</ul>
+<h3 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h3><p><a href="https://leetcode.com/problems/swap-nodes-in-pairs/" target="_blank" rel="noopener">https://leetcode.com/problems/swap-nodes-in-pairs/</a> 24. Swap node in pairs</p>
+<p>Recursive solution, general idea is to reverse the current head with its next and the recursively swap the next pair of node. Clearly, when head is null or head.next is null, return the current head since there’s no need to swap at all. </p>
+<p>The main body of this solution is to swap the current “head” with its next. </p>
+<p>So the whole solution looks like this:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">swapPairs</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Base condition</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span>) <span class="keyword">return</span> head; </span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Swap</span></span><br><span class="line">        ListNode newHead = head.next;</span><br><span class="line">        head.next = newHead.next;</span><br><span class="line">        newHead.next = head;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Recur</span></span><br><span class="line">        ListNode res = swapPairs(head.next);</span><br><span class="line">        head.next = res;</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p><a href="https://www.infoq.com/articles/mtt-metrics-incident-response/?topicPageSponsorship=e46807b0-256d-42ac-9f43-14789284da53" target="_blank" rel="noopener">https://www.infoq.com/articles/mtt-metrics-incident-response/?topicPageSponsorship=e46807b0-256d-42ac-9f43-14789284da53</a></p>
+<ol>
+<li>Set the alert on symptoms not causes.</li>
+</ol>
+
+  </section>
+</article>
+
+
+  
+</main>
+
+</body>
+</html>
